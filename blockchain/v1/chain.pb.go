@@ -25,9 +25,10 @@ type Chain int32
 
 const (
 	Chain_CHAIN_UNSPECIFIED  Chain = 0
-	Chain_CHAIN_ANY_BTC      Chain = 1
-	Chain_CHAIN_ANY_EVM      Chain = 2
-	Chain_CHAIN_ANY_SVM      Chain = 3
+	Chain_CHAIN_ANY          Chain = 1
+	Chain_CHAIN_ANY_BTC      Chain = 2
+	Chain_CHAIN_ANY_EVM      Chain = 3
+	Chain_CHAIN_ANY_SVM      Chain = 4
 	Chain_CHAIN_BTC_BITCOIN  Chain = 31
 	Chain_CHAIN_EVM_ETHEREUM Chain = 41
 	Chain_CHAIN_EVM_ARBITRUM Chain = 42
@@ -40,9 +41,10 @@ const (
 var (
 	Chain_name = map[int32]string{
 		0:  "CHAIN_UNSPECIFIED",
-		1:  "CHAIN_ANY_BTC",
-		2:  "CHAIN_ANY_EVM",
-		3:  "CHAIN_ANY_SVM",
+		1:  "CHAIN_ANY",
+		2:  "CHAIN_ANY_BTC",
+		3:  "CHAIN_ANY_EVM",
+		4:  "CHAIN_ANY_SVM",
 		31: "CHAIN_BTC_BITCOIN",
 		41: "CHAIN_EVM_ETHEREUM",
 		42: "CHAIN_EVM_ARBITRUM",
@@ -52,9 +54,10 @@ var (
 	}
 	Chain_value = map[string]int32{
 		"CHAIN_UNSPECIFIED":  0,
-		"CHAIN_ANY_BTC":      1,
-		"CHAIN_ANY_EVM":      2,
-		"CHAIN_ANY_SVM":      3,
+		"CHAIN_ANY":          1,
+		"CHAIN_ANY_BTC":      2,
+		"CHAIN_ANY_EVM":      3,
+		"CHAIN_ANY_SVM":      4,
 		"CHAIN_BTC_BITCOIN":  31,
 		"CHAIN_EVM_ETHEREUM": 41,
 		"CHAIN_EVM_ARBITRUM": 42,
@@ -95,18 +98,19 @@ var File_blockchain_v1_chain_proto protoreflect.FileDescriptor
 
 const file_blockchain_v1_chain_proto_rawDesc = "" +
 	"\n" +
-	"\x19blockchain/v1/chain.proto\x12\x12cpay.blockchain.v1*\xf5\x01\n" +
+	"\x19blockchain/v1/chain.proto\x12\x12cpay.blockchain.v1*\x84\x02\n" +
 	"\x05Chain\x12\x15\n" +
-	"\x11CHAIN_UNSPECIFIED\x10\x00\x12\x11\n" +
-	"\rCHAIN_ANY_BTC\x10\x01\x12\x11\n" +
-	"\rCHAIN_ANY_EVM\x10\x02\x12\x11\n" +
-	"\rCHAIN_ANY_SVM\x10\x03\x12\x15\n" +
+	"\x11CHAIN_UNSPECIFIED\x10\x00\x12\r\n" +
+	"\tCHAIN_ANY\x10\x01\x12\x11\n" +
+	"\rCHAIN_ANY_BTC\x10\x02\x12\x11\n" +
+	"\rCHAIN_ANY_EVM\x10\x03\x12\x11\n" +
+	"\rCHAIN_ANY_SVM\x10\x04\x12\x15\n" +
 	"\x11CHAIN_BTC_BITCOIN\x10\x1f\x12\x16\n" +
 	"\x12CHAIN_EVM_ETHEREUM\x10)\x12\x16\n" +
 	"\x12CHAIN_EVM_ARBITRUM\x10*\x12\x15\n" +
 	"\x11CHAIN_EVM_POLYGON\x10+\x12\x16\n" +
 	"\x12CHAIN_EVM_UNICHAIN\x10,\x12\x14\n" +
-	"\x10CHAIN_SVM_SOLANA\x10L\"\x04\b\x04\x10\x1e\"\x04\b \x10(\"\x04\b-\x10KB,Z*github.com/cpay-dev/proto-go/blockchain/v1b\x06proto3"
+	"\x10CHAIN_SVM_SOLANA\x10L\"\x04\b\x05\x10\x1e\"\x04\b \x10(\"\x04\b-\x10KB,Z*github.com/cpay-dev/proto-go/blockchain/v1b\x06proto3"
 
 var (
 	file_blockchain_v1_chain_proto_rawDescOnce sync.Once
