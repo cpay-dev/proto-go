@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.32.0
-// source: blockchain/v1/merchant_service.proto
+// source: api/v1/merchant/service.proto
 
-package v1
+package merchant
 
 import (
 	context "context"
@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MerchantService_ListChains_FullMethodName = "/cpay.blockchain.v1.MerchantService/ListChains"
-	MerchantService_ListAssets_FullMethodName = "/cpay.blockchain.v1.MerchantService/ListAssets"
+	MerchantService_ListChains_FullMethodName = "/cpay.api.v1.merchant.MerchantService/ListChains"
+	MerchantService_ListAssets_FullMethodName = "/cpay.api.v1.merchant.MerchantService/ListAssets"
 )
 
 // MerchantServiceClient is the client API for MerchantService service.
@@ -142,7 +142,7 @@ func _MerchantService_ListAssets_Handler(srv interface{}, ctx context.Context, d
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MerchantService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cpay.blockchain.v1.MerchantService",
+	ServiceName: "cpay.api.v1.merchant.MerchantService",
 	HandlerType: (*MerchantServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -155,5 +155,5 @@ var MerchantService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "blockchain/v1/merchant_service.proto",
+	Metadata: "api/v1/merchant/service.proto",
 }

@@ -2,11 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.36.8
 // 	protoc        v6.32.0
-// source: blockchain/v1/asset.proto
+// source: api/v1/blockchain/asset.proto
 
-package v1
+package blockchain
 
 import (
+	v1 "github.com/cpay-dev/proto-go/blockchain/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -24,7 +25,7 @@ const (
 type Asset struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Chain         Chain                  `protobuf:"varint,2,opt,name=chain,proto3,enum=cpay.blockchain.v1.Chain" json:"chain,omitempty"`
+	Chain         v1.Chain               `protobuf:"varint,2,opt,name=chain,proto3,enum=cpay.blockchain.v1.Chain" json:"chain,omitempty"`
 	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	Symbol        string                 `protobuf:"bytes,4,opt,name=symbol,proto3" json:"symbol,omitempty"`
 	Metadata      *AssetMetadata         `protobuf:"bytes,5,opt,name=metadata,proto3" json:"metadata,omitempty"`
@@ -34,7 +35,7 @@ type Asset struct {
 
 func (x *Asset) Reset() {
 	*x = Asset{}
-	mi := &file_blockchain_v1_asset_proto_msgTypes[0]
+	mi := &file_api_v1_blockchain_asset_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -46,7 +47,7 @@ func (x *Asset) String() string {
 func (*Asset) ProtoMessage() {}
 
 func (x *Asset) ProtoReflect() protoreflect.Message {
-	mi := &file_blockchain_v1_asset_proto_msgTypes[0]
+	mi := &file_api_v1_blockchain_asset_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +60,7 @@ func (x *Asset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Asset.ProtoReflect.Descriptor instead.
 func (*Asset) Descriptor() ([]byte, []int) {
-	return file_blockchain_v1_asset_proto_rawDescGZIP(), []int{0}
+	return file_api_v1_blockchain_asset_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Asset) GetId() string {
@@ -69,11 +70,11 @@ func (x *Asset) GetId() string {
 	return ""
 }
 
-func (x *Asset) GetChain() Chain {
+func (x *Asset) GetChain() v1.Chain {
 	if x != nil {
 		return x.Chain
 	}
-	return Chain_CHAIN_UNSPECIFIED
+	return v1.Chain(0)
 }
 
 func (x *Asset) GetName() string {
@@ -112,7 +113,7 @@ type AssetMetadata struct {
 
 func (x *AssetMetadata) Reset() {
 	*x = AssetMetadata{}
-	mi := &file_blockchain_v1_asset_proto_msgTypes[1]
+	mi := &file_api_v1_blockchain_asset_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124,7 +125,7 @@ func (x *AssetMetadata) String() string {
 func (*AssetMetadata) ProtoMessage() {}
 
 func (x *AssetMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_blockchain_v1_asset_proto_msgTypes[1]
+	mi := &file_api_v1_blockchain_asset_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -137,7 +138,7 @@ func (x *AssetMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetMetadata.ProtoReflect.Descriptor instead.
 func (*AssetMetadata) Descriptor() ([]byte, []int) {
-	return file_blockchain_v1_asset_proto_rawDescGZIP(), []int{1}
+	return file_api_v1_blockchain_asset_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AssetMetadata) GetAddress() string {
@@ -203,7 +204,7 @@ type AssetMetadataEVM struct {
 
 func (x *AssetMetadataEVM) Reset() {
 	*x = AssetMetadataEVM{}
-	mi := &file_blockchain_v1_asset_proto_msgTypes[2]
+	mi := &file_api_v1_blockchain_asset_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -215,7 +216,7 @@ func (x *AssetMetadataEVM) String() string {
 func (*AssetMetadataEVM) ProtoMessage() {}
 
 func (x *AssetMetadataEVM) ProtoReflect() protoreflect.Message {
-	mi := &file_blockchain_v1_asset_proto_msgTypes[2]
+	mi := &file_api_v1_blockchain_asset_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -228,7 +229,7 @@ func (x *AssetMetadataEVM) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetMetadataEVM.ProtoReflect.Descriptor instead.
 func (*AssetMetadataEVM) Descriptor() ([]byte, []int) {
-	return file_blockchain_v1_asset_proto_rawDescGZIP(), []int{2}
+	return file_api_v1_blockchain_asset_proto_rawDescGZIP(), []int{2}
 }
 
 type AssetMetadataSVM struct {
@@ -239,7 +240,7 @@ type AssetMetadataSVM struct {
 
 func (x *AssetMetadataSVM) Reset() {
 	*x = AssetMetadataSVM{}
-	mi := &file_blockchain_v1_asset_proto_msgTypes[3]
+	mi := &file_api_v1_blockchain_asset_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -251,7 +252,7 @@ func (x *AssetMetadataSVM) String() string {
 func (*AssetMetadataSVM) ProtoMessage() {}
 
 func (x *AssetMetadataSVM) ProtoReflect() protoreflect.Message {
-	mi := &file_blockchain_v1_asset_proto_msgTypes[3]
+	mi := &file_api_v1_blockchain_asset_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -264,55 +265,55 @@ func (x *AssetMetadataSVM) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetMetadataSVM.ProtoReflect.Descriptor instead.
 func (*AssetMetadataSVM) Descriptor() ([]byte, []int) {
-	return file_blockchain_v1_asset_proto_rawDescGZIP(), []int{3}
+	return file_api_v1_blockchain_asset_proto_rawDescGZIP(), []int{3}
 }
 
-var File_blockchain_v1_asset_proto protoreflect.FileDescriptor
+var File_api_v1_blockchain_asset_proto protoreflect.FileDescriptor
 
-const file_blockchain_v1_asset_proto_rawDesc = "" +
+const file_api_v1_blockchain_asset_proto_rawDesc = "" +
 	"\n" +
-	"\x19blockchain/v1/asset.proto\x12\x12cpay.blockchain.v1\x1a\x19blockchain/v1/chain.proto\"\xb3\x01\n" +
+	"\x1dapi/v1/blockchain/asset.proto\x12\x16cpay.api.v1.blockchain\x1a\x19blockchain/v1/chain.proto\"\xb7\x01\n" +
 	"\x05Asset\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12/\n" +
 	"\x05chain\x18\x02 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\x05chain\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x16\n" +
-	"\x06symbol\x18\x04 \x01(\tR\x06symbol\x12=\n" +
-	"\bmetadata\x18\x05 \x01(\v2!.cpay.blockchain.v1.AssetMetadataR\bmetadata\"\xc5\x01\n" +
+	"\x06symbol\x18\x04 \x01(\tR\x06symbol\x12A\n" +
+	"\bmetadata\x18\x05 \x01(\v2%.cpay.api.v1.blockchain.AssetMetadataR\bmetadata\"\xcd\x01\n" +
 	"\rAssetMetadata\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x1a\n" +
-	"\bdecimals\x18\x02 \x01(\rR\bdecimals\x128\n" +
-	"\x03evm\x18\x03 \x01(\v2$.cpay.blockchain.v1.AssetMetadataEVMH\x00R\x03evm\x128\n" +
-	"\x03svm\x18\x04 \x01(\v2$.cpay.blockchain.v1.AssetMetadataSVMH\x00R\x03svmB\n" +
+	"\bdecimals\x18\x02 \x01(\rR\bdecimals\x12<\n" +
+	"\x03evm\x18\x03 \x01(\v2(.cpay.api.v1.blockchain.AssetMetadataEVMH\x00R\x03evm\x12<\n" +
+	"\x03svm\x18\x04 \x01(\v2(.cpay.api.v1.blockchain.AssetMetadataSVMH\x00R\x03svmB\n" +
 	"\n" +
 	"\bmetadata\"\x12\n" +
 	"\x10AssetMetadataEVM\"\x12\n" +
-	"\x10AssetMetadataSVMB,Z*github.com/cpay-dev/proto-go/blockchain/v1b\x06proto3"
+	"\x10AssetMetadataSVMB0Z.github.com/cpay-dev/proto-go/api/v1/blockchainb\x06proto3"
 
 var (
-	file_blockchain_v1_asset_proto_rawDescOnce sync.Once
-	file_blockchain_v1_asset_proto_rawDescData []byte
+	file_api_v1_blockchain_asset_proto_rawDescOnce sync.Once
+	file_api_v1_blockchain_asset_proto_rawDescData []byte
 )
 
-func file_blockchain_v1_asset_proto_rawDescGZIP() []byte {
-	file_blockchain_v1_asset_proto_rawDescOnce.Do(func() {
-		file_blockchain_v1_asset_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_blockchain_v1_asset_proto_rawDesc), len(file_blockchain_v1_asset_proto_rawDesc)))
+func file_api_v1_blockchain_asset_proto_rawDescGZIP() []byte {
+	file_api_v1_blockchain_asset_proto_rawDescOnce.Do(func() {
+		file_api_v1_blockchain_asset_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_v1_blockchain_asset_proto_rawDesc), len(file_api_v1_blockchain_asset_proto_rawDesc)))
 	})
-	return file_blockchain_v1_asset_proto_rawDescData
+	return file_api_v1_blockchain_asset_proto_rawDescData
 }
 
-var file_blockchain_v1_asset_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
-var file_blockchain_v1_asset_proto_goTypes = []any{
-	(*Asset)(nil),            // 0: cpay.blockchain.v1.Asset
-	(*AssetMetadata)(nil),    // 1: cpay.blockchain.v1.AssetMetadata
-	(*AssetMetadataEVM)(nil), // 2: cpay.blockchain.v1.AssetMetadataEVM
-	(*AssetMetadataSVM)(nil), // 3: cpay.blockchain.v1.AssetMetadataSVM
-	(Chain)(0),               // 4: cpay.blockchain.v1.Chain
+var file_api_v1_blockchain_asset_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_api_v1_blockchain_asset_proto_goTypes = []any{
+	(*Asset)(nil),            // 0: cpay.api.v1.blockchain.Asset
+	(*AssetMetadata)(nil),    // 1: cpay.api.v1.blockchain.AssetMetadata
+	(*AssetMetadataEVM)(nil), // 2: cpay.api.v1.blockchain.AssetMetadataEVM
+	(*AssetMetadataSVM)(nil), // 3: cpay.api.v1.blockchain.AssetMetadataSVM
+	(v1.Chain)(0),            // 4: cpay.blockchain.v1.Chain
 }
-var file_blockchain_v1_asset_proto_depIdxs = []int32{
-	4, // 0: cpay.blockchain.v1.Asset.chain:type_name -> cpay.blockchain.v1.Chain
-	1, // 1: cpay.blockchain.v1.Asset.metadata:type_name -> cpay.blockchain.v1.AssetMetadata
-	2, // 2: cpay.blockchain.v1.AssetMetadata.evm:type_name -> cpay.blockchain.v1.AssetMetadataEVM
-	3, // 3: cpay.blockchain.v1.AssetMetadata.svm:type_name -> cpay.blockchain.v1.AssetMetadataSVM
+var file_api_v1_blockchain_asset_proto_depIdxs = []int32{
+	4, // 0: cpay.api.v1.blockchain.Asset.chain:type_name -> cpay.blockchain.v1.Chain
+	1, // 1: cpay.api.v1.blockchain.Asset.metadata:type_name -> cpay.api.v1.blockchain.AssetMetadata
+	2, // 2: cpay.api.v1.blockchain.AssetMetadata.evm:type_name -> cpay.api.v1.blockchain.AssetMetadataEVM
+	3, // 3: cpay.api.v1.blockchain.AssetMetadata.svm:type_name -> cpay.api.v1.blockchain.AssetMetadataSVM
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
@@ -320,13 +321,12 @@ var file_blockchain_v1_asset_proto_depIdxs = []int32{
 	0, // [0:4] is the sub-list for field type_name
 }
 
-func init() { file_blockchain_v1_asset_proto_init() }
-func file_blockchain_v1_asset_proto_init() {
-	if File_blockchain_v1_asset_proto != nil {
+func init() { file_api_v1_blockchain_asset_proto_init() }
+func file_api_v1_blockchain_asset_proto_init() {
+	if File_api_v1_blockchain_asset_proto != nil {
 		return
 	}
-	file_blockchain_v1_chain_proto_init()
-	file_blockchain_v1_asset_proto_msgTypes[1].OneofWrappers = []any{
+	file_api_v1_blockchain_asset_proto_msgTypes[1].OneofWrappers = []any{
 		(*AssetMetadata_Evm)(nil),
 		(*AssetMetadata_Svm)(nil),
 	}
@@ -334,17 +334,17 @@ func file_blockchain_v1_asset_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_blockchain_v1_asset_proto_rawDesc), len(file_blockchain_v1_asset_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_v1_blockchain_asset_proto_rawDesc), len(file_api_v1_blockchain_asset_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_blockchain_v1_asset_proto_goTypes,
-		DependencyIndexes: file_blockchain_v1_asset_proto_depIdxs,
-		MessageInfos:      file_blockchain_v1_asset_proto_msgTypes,
+		GoTypes:           file_api_v1_blockchain_asset_proto_goTypes,
+		DependencyIndexes: file_api_v1_blockchain_asset_proto_depIdxs,
+		MessageInfos:      file_api_v1_blockchain_asset_proto_msgTypes,
 	}.Build()
-	File_blockchain_v1_asset_proto = out.File
-	file_blockchain_v1_asset_proto_goTypes = nil
-	file_blockchain_v1_asset_proto_depIdxs = nil
+	File_api_v1_blockchain_asset_proto = out.File
+	file_api_v1_blockchain_asset_proto_goTypes = nil
+	file_api_v1_blockchain_asset_proto_depIdxs = nil
 }
