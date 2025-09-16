@@ -7,7 +7,6 @@
 package blockchain
 
 import (
-	v1 "github.com/cpay-dev/proto-go/blockchain/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -24,7 +23,7 @@ const (
 
 type Chain struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            v1.Chain               `protobuf:"varint,1,opt,name=id,proto3,enum=cpay.blockchain.v1.Chain" json:"id,omitempty"`
+	Id            ChainID                `protobuf:"varint,1,opt,name=id,proto3,enum=cpay.api.v1.blockchain.ChainID" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -60,11 +59,11 @@ func (*Chain) Descriptor() ([]byte, []int) {
 	return file_api_v1_blockchain_chain_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Chain) GetId() v1.Chain {
+func (x *Chain) GetId() ChainID {
 	if x != nil {
 		return x.Id
 	}
-	return v1.Chain(0)
+	return ChainID_CHAIN_ID_UNSPECIFIED
 }
 
 func (x *Chain) GetName() string {
@@ -78,9 +77,9 @@ var File_api_v1_blockchain_chain_proto protoreflect.FileDescriptor
 
 const file_api_v1_blockchain_chain_proto_rawDesc = "" +
 	"\n" +
-	"\x1dapi/v1/blockchain/chain.proto\x12\x16cpay.api.v1.blockchain\x1a\x19blockchain/v1/chain.proto\"F\n" +
-	"\x05Chain\x12)\n" +
-	"\x02id\x18\x01 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\x02id\x12\x12\n" +
+	"\x1dapi/v1/blockchain/chain.proto\x12\x16cpay.api.v1.blockchain\x1a api/v1/blockchain/chain_id.proto\"L\n" +
+	"\x05Chain\x12/\n" +
+	"\x02id\x18\x01 \x01(\x0e2\x1f.cpay.api.v1.blockchain.ChainIDR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04nameB0Z.github.com/cpay-dev/proto-go/api/v1/blockchainb\x06proto3"
 
 var (
@@ -98,10 +97,10 @@ func file_api_v1_blockchain_chain_proto_rawDescGZIP() []byte {
 var file_api_v1_blockchain_chain_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_api_v1_blockchain_chain_proto_goTypes = []any{
 	(*Chain)(nil), // 0: cpay.api.v1.blockchain.Chain
-	(v1.Chain)(0), // 1: cpay.blockchain.v1.Chain
+	(ChainID)(0),  // 1: cpay.api.v1.blockchain.ChainID
 }
 var file_api_v1_blockchain_chain_proto_depIdxs = []int32{
-	1, // 0: cpay.api.v1.blockchain.Chain.id:type_name -> cpay.blockchain.v1.Chain
+	1, // 0: cpay.api.v1.blockchain.Chain.id:type_name -> cpay.api.v1.blockchain.ChainID
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -114,6 +113,7 @@ func file_api_v1_blockchain_chain_proto_init() {
 	if File_api_v1_blockchain_chain_proto != nil {
 		return
 	}
+	file_api_v1_blockchain_chain_id_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

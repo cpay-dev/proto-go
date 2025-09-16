@@ -7,7 +7,6 @@
 package blockchain
 
 import (
-	v1 "github.com/cpay-dev/proto-go/blockchain/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -25,7 +24,7 @@ const (
 type Asset struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Chain         v1.Chain               `protobuf:"varint,2,opt,name=chain,proto3,enum=cpay.blockchain.v1.Chain" json:"chain,omitempty"`
+	Chain         ChainID                `protobuf:"varint,2,opt,name=chain,proto3,enum=cpay.api.v1.blockchain.ChainID" json:"chain,omitempty"`
 	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	Symbol        string                 `protobuf:"bytes,4,opt,name=symbol,proto3" json:"symbol,omitempty"`
 	Metadata      *AssetMetadata         `protobuf:"bytes,5,opt,name=metadata,proto3" json:"metadata,omitempty"`
@@ -70,11 +69,11 @@ func (x *Asset) GetId() string {
 	return ""
 }
 
-func (x *Asset) GetChain() v1.Chain {
+func (x *Asset) GetChain() ChainID {
 	if x != nil {
 		return x.Chain
 	}
-	return v1.Chain(0)
+	return ChainID_CHAIN_ID_UNSPECIFIED
 }
 
 func (x *Asset) GetName() string {
@@ -272,10 +271,10 @@ var File_api_v1_blockchain_asset_proto protoreflect.FileDescriptor
 
 const file_api_v1_blockchain_asset_proto_rawDesc = "" +
 	"\n" +
-	"\x1dapi/v1/blockchain/asset.proto\x12\x16cpay.api.v1.blockchain\x1a\x19blockchain/v1/chain.proto\"\xb7\x01\n" +
+	"\x1dapi/v1/blockchain/asset.proto\x12\x16cpay.api.v1.blockchain\x1a api/v1/blockchain/chain_id.proto\"\xbd\x01\n" +
 	"\x05Asset\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12/\n" +
-	"\x05chain\x18\x02 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\x05chain\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x125\n" +
+	"\x05chain\x18\x02 \x01(\x0e2\x1f.cpay.api.v1.blockchain.ChainIDR\x05chain\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x16\n" +
 	"\x06symbol\x18\x04 \x01(\tR\x06symbol\x12A\n" +
 	"\bmetadata\x18\x05 \x01(\v2%.cpay.api.v1.blockchain.AssetMetadataR\bmetadata\"\xcd\x01\n" +
@@ -307,10 +306,10 @@ var file_api_v1_blockchain_asset_proto_goTypes = []any{
 	(*AssetMetadata)(nil),    // 1: cpay.api.v1.blockchain.AssetMetadata
 	(*AssetMetadataEVM)(nil), // 2: cpay.api.v1.blockchain.AssetMetadataEVM
 	(*AssetMetadataSVM)(nil), // 3: cpay.api.v1.blockchain.AssetMetadataSVM
-	(v1.Chain)(0),            // 4: cpay.blockchain.v1.Chain
+	(ChainID)(0),             // 4: cpay.api.v1.blockchain.ChainID
 }
 var file_api_v1_blockchain_asset_proto_depIdxs = []int32{
-	4, // 0: cpay.api.v1.blockchain.Asset.chain:type_name -> cpay.blockchain.v1.Chain
+	4, // 0: cpay.api.v1.blockchain.Asset.chain:type_name -> cpay.api.v1.blockchain.ChainID
 	1, // 1: cpay.api.v1.blockchain.Asset.metadata:type_name -> cpay.api.v1.blockchain.AssetMetadata
 	2, // 2: cpay.api.v1.blockchain.AssetMetadata.evm:type_name -> cpay.api.v1.blockchain.AssetMetadataEVM
 	3, // 3: cpay.api.v1.blockchain.AssetMetadata.svm:type_name -> cpay.api.v1.blockchain.AssetMetadataSVM
@@ -326,6 +325,7 @@ func file_api_v1_blockchain_asset_proto_init() {
 	if File_api_v1_blockchain_asset_proto != nil {
 		return
 	}
+	file_api_v1_blockchain_chain_id_proto_init()
 	file_api_v1_blockchain_asset_proto_msgTypes[1].OneofWrappers = []any{
 		(*AssetMetadata_Evm)(nil),
 		(*AssetMetadata_Svm)(nil),
