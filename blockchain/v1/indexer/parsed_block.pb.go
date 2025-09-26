@@ -111,6 +111,7 @@ type ParsedTransfer struct {
 	Amount string                 `protobuf:"bytes,2,opt,name=amount,proto3" json:"amount,omitempty"`
 	From   string                 `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`
 	To     string                 `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`
+	Index  uint64                 `protobuf:"varint,5,opt,name=index,proto3" json:"index,omitempty"`
 	// Types that are valid to be assigned to Kind:
 	//
 	//	*ParsedTransfer_Native
@@ -178,6 +179,13 @@ func (x *ParsedTransfer) GetTo() string {
 	return ""
 }
 
+func (x *ParsedTransfer) GetIndex() uint64 {
+	if x != nil {
+		return x.Index
+	}
+	return 0
+}
+
 func (x *ParsedTransfer) GetKind() isParsedTransfer_Kind {
 	if x != nil {
 		return x.Kind
@@ -208,11 +216,11 @@ type isParsedTransfer_Kind interface {
 }
 
 type ParsedTransfer_Native struct {
-	Native bool `protobuf:"varint,5,opt,name=native,proto3,oneof"`
+	Native bool `protobuf:"varint,6,opt,name=native,proto3,oneof"`
 }
 
 type ParsedTransfer_Contract struct {
-	Contract string `protobuf:"bytes,6,opt,name=contract,proto3,oneof"`
+	Contract string `protobuf:"bytes,7,opt,name=contract,proto3,oneof"`
 }
 
 func (*ParsedTransfer_Native) isParsedTransfer_Kind() {}
@@ -231,14 +239,15 @@ const file_blockchain_v1_indexer_parsed_block_proto_rawDesc = "" +
 	"block_hash\x18\x03 \x01(\tR\tblockHash\x12!\n" +
 	"\fblock_number\x18\x04 \x01(\x04R\vblockNumber\x12'\n" +
 	"\x0fblock_timestamp\x18\x05 \x01(\x04R\x0eblockTimestamp\x12H\n" +
-	"\ttransfers\x18\x06 \x03(\v2*.cpay.blockchain.v1.indexer.ParsedTransferR\ttransfers\"\xa5\x01\n" +
+	"\ttransfers\x18\x06 \x03(\v2*.cpay.blockchain.v1.indexer.ParsedTransferR\ttransfers\"\xbb\x01\n" +
 	"\x0eParsedTransfer\x12\x17\n" +
 	"\atx_hash\x18\x01 \x01(\tR\x06txHash\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\tR\x06amount\x12\x12\n" +
 	"\x04from\x18\x03 \x01(\tR\x04from\x12\x0e\n" +
-	"\x02to\x18\x04 \x01(\tR\x02to\x12\x18\n" +
-	"\x06native\x18\x05 \x01(\bH\x00R\x06native\x12\x1c\n" +
-	"\bcontract\x18\x06 \x01(\tH\x00R\bcontractB\x06\n" +
+	"\x02to\x18\x04 \x01(\tR\x02to\x12\x14\n" +
+	"\x05index\x18\x05 \x01(\x04R\x05index\x12\x18\n" +
+	"\x06native\x18\x06 \x01(\bH\x00R\x06native\x12\x1c\n" +
+	"\bcontract\x18\a \x01(\tH\x00R\bcontractB\x06\n" +
 	"\x04kindB4Z2github.com/cpay-dev/proto-go/blockchain/v1/indexerb\x06proto3"
 
 var (
