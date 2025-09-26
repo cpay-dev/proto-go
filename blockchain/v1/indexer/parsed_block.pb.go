@@ -7,7 +7,6 @@
 package indexer
 
 import (
-	v1 "github.com/cpay-dev/proto-go/blockchain/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -23,15 +22,11 @@ const (
 )
 
 type ParsedBlock struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	Chain             v1.Chain               `protobuf:"varint,1,opt,name=chain,proto3,enum=cpay.blockchain.v1.Chain" json:"chain,omitempty"`
-	ConfirmationLevel v1.ConfirmationLevel   `protobuf:"varint,2,opt,name=confirmation_level,json=confirmationLevel,proto3,enum=cpay.blockchain.v1.ConfirmationLevel" json:"confirmation_level,omitempty"`
-	BlockHash         string                 `protobuf:"bytes,3,opt,name=block_hash,json=blockHash,proto3" json:"block_hash,omitempty"`
-	BlockNumber       uint64                 `protobuf:"varint,4,opt,name=block_number,json=blockNumber,proto3" json:"block_number,omitempty"`
-	BlockTimestamp    uint64                 `protobuf:"varint,5,opt,name=block_timestamp,json=blockTimestamp,proto3" json:"block_timestamp,omitempty"`
-	Transfers         []*ParsedTransfer      `protobuf:"bytes,6,rep,name=transfers,proto3" json:"transfers,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Block         *BlockBase             `protobuf:"bytes,1,opt,name=block,proto3" json:"block,omitempty"`
+	Transfers     []*ParsedTransfer      `protobuf:"bytes,2,rep,name=transfers,proto3" json:"transfers,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ParsedBlock) Reset() {
@@ -64,39 +59,11 @@ func (*ParsedBlock) Descriptor() ([]byte, []int) {
 	return file_blockchain_v1_indexer_parsed_block_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ParsedBlock) GetChain() v1.Chain {
+func (x *ParsedBlock) GetBlock() *BlockBase {
 	if x != nil {
-		return x.Chain
+		return x.Block
 	}
-	return v1.Chain(0)
-}
-
-func (x *ParsedBlock) GetConfirmationLevel() v1.ConfirmationLevel {
-	if x != nil {
-		return x.ConfirmationLevel
-	}
-	return v1.ConfirmationLevel(0)
-}
-
-func (x *ParsedBlock) GetBlockHash() string {
-	if x != nil {
-		return x.BlockHash
-	}
-	return ""
-}
-
-func (x *ParsedBlock) GetBlockNumber() uint64 {
-	if x != nil {
-		return x.BlockNumber
-	}
-	return 0
-}
-
-func (x *ParsedBlock) GetBlockTimestamp() uint64 {
-	if x != nil {
-		return x.BlockTimestamp
-	}
-	return 0
+	return nil
 }
 
 func (x *ParsedBlock) GetTransfers() []*ParsedTransfer {
@@ -232,15 +199,10 @@ var File_blockchain_v1_indexer_parsed_block_proto protoreflect.FileDescriptor
 
 const file_blockchain_v1_indexer_parsed_block_proto_rawDesc = "" +
 	"\n" +
-	"(blockchain/v1/indexer/parsed_block.proto\x12\x1acpay.blockchain.v1.indexer\x1a\x19blockchain/v1/block.proto\x1a\x19blockchain/v1/chain.proto\"\xc9\x02\n" +
-	"\vParsedBlock\x12/\n" +
-	"\x05chain\x18\x01 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\x05chain\x12T\n" +
-	"\x12confirmation_level\x18\x02 \x01(\x0e2%.cpay.blockchain.v1.ConfirmationLevelR\x11confirmationLevel\x12\x1d\n" +
-	"\n" +
-	"block_hash\x18\x03 \x01(\tR\tblockHash\x12!\n" +
-	"\fblock_number\x18\x04 \x01(\x04R\vblockNumber\x12'\n" +
-	"\x0fblock_timestamp\x18\x05 \x01(\x04R\x0eblockTimestamp\x12H\n" +
-	"\ttransfers\x18\x06 \x03(\v2*.cpay.blockchain.v1.indexer.ParsedTransferR\ttransfers\"\xbb\x01\n" +
+	"(blockchain/v1/indexer/parsed_block.proto\x12\x1acpay.blockchain.v1.indexer\x1a!blockchain/v1/indexer/block.proto\"\x94\x01\n" +
+	"\vParsedBlock\x12;\n" +
+	"\x05block\x18\x01 \x01(\v2%.cpay.blockchain.v1.indexer.BlockBaseR\x05block\x12H\n" +
+	"\ttransfers\x18\x02 \x03(\v2*.cpay.blockchain.v1.indexer.ParsedTransferR\ttransfers\"\xbb\x01\n" +
 	"\x0eParsedTransfer\x12\x17\n" +
 	"\atx_hash\x18\x01 \x01(\tR\x06txHash\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\tR\x06amount\x12\x12\n" +
@@ -265,20 +227,18 @@ func file_blockchain_v1_indexer_parsed_block_proto_rawDescGZIP() []byte {
 
 var file_blockchain_v1_indexer_parsed_block_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_blockchain_v1_indexer_parsed_block_proto_goTypes = []any{
-	(*ParsedBlock)(nil),       // 0: cpay.blockchain.v1.indexer.ParsedBlock
-	(*ParsedTransfer)(nil),    // 1: cpay.blockchain.v1.indexer.ParsedTransfer
-	(v1.Chain)(0),             // 2: cpay.blockchain.v1.Chain
-	(v1.ConfirmationLevel)(0), // 3: cpay.blockchain.v1.ConfirmationLevel
+	(*ParsedBlock)(nil),    // 0: cpay.blockchain.v1.indexer.ParsedBlock
+	(*ParsedTransfer)(nil), // 1: cpay.blockchain.v1.indexer.ParsedTransfer
+	(*BlockBase)(nil),      // 2: cpay.blockchain.v1.indexer.BlockBase
 }
 var file_blockchain_v1_indexer_parsed_block_proto_depIdxs = []int32{
-	2, // 0: cpay.blockchain.v1.indexer.ParsedBlock.chain:type_name -> cpay.blockchain.v1.Chain
-	3, // 1: cpay.blockchain.v1.indexer.ParsedBlock.confirmation_level:type_name -> cpay.blockchain.v1.ConfirmationLevel
-	1, // 2: cpay.blockchain.v1.indexer.ParsedBlock.transfers:type_name -> cpay.blockchain.v1.indexer.ParsedTransfer
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	2, // 0: cpay.blockchain.v1.indexer.ParsedBlock.block:type_name -> cpay.blockchain.v1.indexer.BlockBase
+	1, // 1: cpay.blockchain.v1.indexer.ParsedBlock.transfers:type_name -> cpay.blockchain.v1.indexer.ParsedTransfer
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_blockchain_v1_indexer_parsed_block_proto_init() }
@@ -286,6 +246,7 @@ func file_blockchain_v1_indexer_parsed_block_proto_init() {
 	if File_blockchain_v1_indexer_parsed_block_proto != nil {
 		return
 	}
+	file_blockchain_v1_indexer_block_proto_init()
 	file_blockchain_v1_indexer_parsed_block_proto_msgTypes[1].OneofWrappers = []any{
 		(*ParsedTransfer_Native)(nil),
 		(*ParsedTransfer_Contract)(nil),

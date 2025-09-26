@@ -22,13 +22,85 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Block struct {
+type BlockBase struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	Chain             v1.Chain               `protobuf:"varint,1,opt,name=chain,proto3,enum=cpay.blockchain.v1.Chain" json:"chain,omitempty"`
 	ConfirmationLevel v1.ConfirmationLevel   `protobuf:"varint,2,opt,name=confirmation_level,json=confirmationLevel,proto3,enum=cpay.blockchain.v1.ConfirmationLevel" json:"confirmation_level,omitempty"`
 	BlockHash         string                 `protobuf:"bytes,3,opt,name=block_hash,json=blockHash,proto3" json:"block_hash,omitempty"`
 	BlockNumber       uint64                 `protobuf:"varint,4,opt,name=block_number,json=blockNumber,proto3" json:"block_number,omitempty"`
 	BlockTimestamp    uint64                 `protobuf:"varint,5,opt,name=block_timestamp,json=blockTimestamp,proto3" json:"block_timestamp,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *BlockBase) Reset() {
+	*x = BlockBase{}
+	mi := &file_blockchain_v1_indexer_block_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BlockBase) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BlockBase) ProtoMessage() {}
+
+func (x *BlockBase) ProtoReflect() protoreflect.Message {
+	mi := &file_blockchain_v1_indexer_block_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BlockBase.ProtoReflect.Descriptor instead.
+func (*BlockBase) Descriptor() ([]byte, []int) {
+	return file_blockchain_v1_indexer_block_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *BlockBase) GetChain() v1.Chain {
+	if x != nil {
+		return x.Chain
+	}
+	return v1.Chain(0)
+}
+
+func (x *BlockBase) GetConfirmationLevel() v1.ConfirmationLevel {
+	if x != nil {
+		return x.ConfirmationLevel
+	}
+	return v1.ConfirmationLevel(0)
+}
+
+func (x *BlockBase) GetBlockHash() string {
+	if x != nil {
+		return x.BlockHash
+	}
+	return ""
+}
+
+func (x *BlockBase) GetBlockNumber() uint64 {
+	if x != nil {
+		return x.BlockNumber
+	}
+	return 0
+}
+
+func (x *BlockBase) GetBlockTimestamp() uint64 {
+	if x != nil {
+		return x.BlockTimestamp
+	}
+	return 0
+}
+
+type Block struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Base  *BlockBase             `protobuf:"bytes,1,opt,name=base,proto3" json:"base,omitempty"`
 	// Types that are valid to be assigned to Transactions:
 	//
 	//	*Block_EvmTransactions
@@ -39,7 +111,7 @@ type Block struct {
 
 func (x *Block) Reset() {
 	*x = Block{}
-	mi := &file_blockchain_v1_indexer_block_proto_msgTypes[0]
+	mi := &file_blockchain_v1_indexer_block_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -51,7 +123,7 @@ func (x *Block) String() string {
 func (*Block) ProtoMessage() {}
 
 func (x *Block) ProtoReflect() protoreflect.Message {
-	mi := &file_blockchain_v1_indexer_block_proto_msgTypes[0]
+	mi := &file_blockchain_v1_indexer_block_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -64,42 +136,14 @@ func (x *Block) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Block.ProtoReflect.Descriptor instead.
 func (*Block) Descriptor() ([]byte, []int) {
-	return file_blockchain_v1_indexer_block_proto_rawDescGZIP(), []int{0}
+	return file_blockchain_v1_indexer_block_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Block) GetChain() v1.Chain {
+func (x *Block) GetBase() *BlockBase {
 	if x != nil {
-		return x.Chain
+		return x.Base
 	}
-	return v1.Chain(0)
-}
-
-func (x *Block) GetConfirmationLevel() v1.ConfirmationLevel {
-	if x != nil {
-		return x.ConfirmationLevel
-	}
-	return v1.ConfirmationLevel(0)
-}
-
-func (x *Block) GetBlockHash() string {
-	if x != nil {
-		return x.BlockHash
-	}
-	return ""
-}
-
-func (x *Block) GetBlockNumber() uint64 {
-	if x != nil {
-		return x.BlockNumber
-	}
-	return 0
-}
-
-func (x *Block) GetBlockTimestamp() uint64 {
-	if x != nil {
-		return x.BlockTimestamp
-	}
-	return 0
+	return nil
 }
 
 func (x *Block) GetTransactions() isBlock_Transactions {
@@ -138,7 +182,7 @@ type EVMTransactions struct {
 
 func (x *EVMTransactions) Reset() {
 	*x = EVMTransactions{}
-	mi := &file_blockchain_v1_indexer_block_proto_msgTypes[1]
+	mi := &file_blockchain_v1_indexer_block_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -150,7 +194,7 @@ func (x *EVMTransactions) String() string {
 func (*EVMTransactions) ProtoMessage() {}
 
 func (x *EVMTransactions) ProtoReflect() protoreflect.Message {
-	mi := &file_blockchain_v1_indexer_block_proto_msgTypes[1]
+	mi := &file_blockchain_v1_indexer_block_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -163,7 +207,7 @@ func (x *EVMTransactions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EVMTransactions.ProtoReflect.Descriptor instead.
 func (*EVMTransactions) Descriptor() ([]byte, []int) {
-	return file_blockchain_v1_indexer_block_proto_rawDescGZIP(), []int{1}
+	return file_blockchain_v1_indexer_block_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *EVMTransactions) GetSerializedTxs() []byte {
@@ -184,14 +228,16 @@ var File_blockchain_v1_indexer_block_proto protoreflect.FileDescriptor
 
 const file_blockchain_v1_indexer_block_proto_rawDesc = "" +
 	"\n" +
-	"!blockchain/v1/indexer/block.proto\x12\x1acpay.blockchain.v1.indexer\x1a\x19blockchain/v1/block.proto\x1a\x19blockchain/v1/chain.proto\"\xe3\x02\n" +
-	"\x05Block\x12/\n" +
+	"!blockchain/v1/indexer/block.proto\x12\x1acpay.blockchain.v1.indexer\x1a\x19blockchain/v1/block.proto\x1a\x19blockchain/v1/chain.proto\"\xfd\x01\n" +
+	"\tBlockBase\x12/\n" +
 	"\x05chain\x18\x01 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\x05chain\x12T\n" +
 	"\x12confirmation_level\x18\x02 \x01(\x0e2%.cpay.blockchain.v1.ConfirmationLevelR\x11confirmationLevel\x12\x1d\n" +
 	"\n" +
 	"block_hash\x18\x03 \x01(\tR\tblockHash\x12!\n" +
 	"\fblock_number\x18\x04 \x01(\x04R\vblockNumber\x12'\n" +
-	"\x0fblock_timestamp\x18\x05 \x01(\x04R\x0eblockTimestamp\x12X\n" +
+	"\x0fblock_timestamp\x18\x05 \x01(\x04R\x0eblockTimestamp\"\xac\x01\n" +
+	"\x05Block\x129\n" +
+	"\x04base\x18\x01 \x01(\v2%.cpay.blockchain.v1.indexer.BlockBaseR\x04base\x12X\n" +
 	"\x10evm_transactions\x18\x06 \x01(\v2+.cpay.blockchain.v1.indexer.EVMTransactionsH\x00R\x0fevmTransactionsB\x0e\n" +
 	"\ftransactions\"i\n" +
 	"\x0fEVMTransactions\x12%\n" +
@@ -210,22 +256,24 @@ func file_blockchain_v1_indexer_block_proto_rawDescGZIP() []byte {
 	return file_blockchain_v1_indexer_block_proto_rawDescData
 }
 
-var file_blockchain_v1_indexer_block_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_blockchain_v1_indexer_block_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_blockchain_v1_indexer_block_proto_goTypes = []any{
-	(*Block)(nil),             // 0: cpay.blockchain.v1.indexer.Block
-	(*EVMTransactions)(nil),   // 1: cpay.blockchain.v1.indexer.EVMTransactions
-	(v1.Chain)(0),             // 2: cpay.blockchain.v1.Chain
-	(v1.ConfirmationLevel)(0), // 3: cpay.blockchain.v1.ConfirmationLevel
+	(*BlockBase)(nil),         // 0: cpay.blockchain.v1.indexer.BlockBase
+	(*Block)(nil),             // 1: cpay.blockchain.v1.indexer.Block
+	(*EVMTransactions)(nil),   // 2: cpay.blockchain.v1.indexer.EVMTransactions
+	(v1.Chain)(0),             // 3: cpay.blockchain.v1.Chain
+	(v1.ConfirmationLevel)(0), // 4: cpay.blockchain.v1.ConfirmationLevel
 }
 var file_blockchain_v1_indexer_block_proto_depIdxs = []int32{
-	2, // 0: cpay.blockchain.v1.indexer.Block.chain:type_name -> cpay.blockchain.v1.Chain
-	3, // 1: cpay.blockchain.v1.indexer.Block.confirmation_level:type_name -> cpay.blockchain.v1.ConfirmationLevel
-	1, // 2: cpay.blockchain.v1.indexer.Block.evm_transactions:type_name -> cpay.blockchain.v1.indexer.EVMTransactions
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	3, // 0: cpay.blockchain.v1.indexer.BlockBase.chain:type_name -> cpay.blockchain.v1.Chain
+	4, // 1: cpay.blockchain.v1.indexer.BlockBase.confirmation_level:type_name -> cpay.blockchain.v1.ConfirmationLevel
+	0, // 2: cpay.blockchain.v1.indexer.Block.base:type_name -> cpay.blockchain.v1.indexer.BlockBase
+	2, // 3: cpay.blockchain.v1.indexer.Block.evm_transactions:type_name -> cpay.blockchain.v1.indexer.EVMTransactions
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_blockchain_v1_indexer_block_proto_init() }
@@ -233,7 +281,7 @@ func file_blockchain_v1_indexer_block_proto_init() {
 	if File_blockchain_v1_indexer_block_proto != nil {
 		return
 	}
-	file_blockchain_v1_indexer_block_proto_msgTypes[0].OneofWrappers = []any{
+	file_blockchain_v1_indexer_block_proto_msgTypes[1].OneofWrappers = []any{
 		(*Block_EvmTransactions)(nil),
 	}
 	type x struct{}
@@ -242,7 +290,7 @@ func file_blockchain_v1_indexer_block_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_blockchain_v1_indexer_block_proto_rawDesc), len(file_blockchain_v1_indexer_block_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
