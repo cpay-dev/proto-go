@@ -7,7 +7,7 @@
 package merchant
 
 import (
-	blockchain "github.com/cpay-dev/proto-go/api/v1/blockchain"
+	v1 "github.com/cpay-dev/proto-go/blockchain/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -60,7 +60,7 @@ func (*ListChainsRequest) Descriptor() ([]byte, []int) {
 
 type ListChainsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Chains        []*blockchain.Chain    `protobuf:"bytes,1,rep,name=chains,proto3" json:"chains,omitempty"`
+	Chains        []*Chain               `protobuf:"bytes,1,rep,name=chains,proto3" json:"chains,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -95,7 +95,7 @@ func (*ListChainsResponse) Descriptor() ([]byte, []int) {
 	return file_api_v1_merchant_service_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ListChainsResponse) GetChains() []*blockchain.Chain {
+func (x *ListChainsResponse) GetChains() []*Chain {
 	if x != nil {
 		return x.Chains
 	}
@@ -104,7 +104,7 @@ func (x *ListChainsResponse) GetChains() []*blockchain.Chain {
 
 type ListAssetsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Chain         blockchain.ChainID     `protobuf:"varint,1,opt,name=chain,proto3,enum=cpay.api.v1.blockchain.ChainID" json:"chain,omitempty"`
+	ChainId       v1.Chain               `protobuf:"varint,1,opt,name=chain_id,json=chainId,proto3,enum=cpay.blockchain.v1.Chain" json:"chain_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -139,16 +139,16 @@ func (*ListAssetsRequest) Descriptor() ([]byte, []int) {
 	return file_api_v1_merchant_service_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ListAssetsRequest) GetChain() blockchain.ChainID {
+func (x *ListAssetsRequest) GetChainId() v1.Chain {
 	if x != nil {
-		return x.Chain
+		return x.ChainId
 	}
-	return blockchain.ChainID(0)
+	return v1.Chain(0)
 }
 
 type ListAssetsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Assets        []*blockchain.Asset    `protobuf:"bytes,1,rep,name=assets,proto3" json:"assets,omitempty"`
+	Assets        []*Asset               `protobuf:"bytes,1,rep,name=assets,proto3" json:"assets,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -183,7 +183,7 @@ func (*ListAssetsResponse) Descriptor() ([]byte, []int) {
 	return file_api_v1_merchant_service_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ListAssetsResponse) GetAssets() []*blockchain.Asset {
+func (x *ListAssetsResponse) GetAssets() []*Asset {
 	if x != nil {
 		return x.Assets
 	}
@@ -194,14 +194,14 @@ var File_api_v1_merchant_service_proto protoreflect.FileDescriptor
 
 const file_api_v1_merchant_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1dapi/v1/merchant/service.proto\x12\x14cpay.api.v1.merchant\x1a\x1dapi/v1/blockchain/asset.proto\x1a\x1dapi/v1/blockchain/chain.proto\x1a api/v1/blockchain/chain_id.proto\"\x13\n" +
-	"\x11ListChainsRequest\"K\n" +
-	"\x12ListChainsResponse\x125\n" +
-	"\x06chains\x18\x01 \x03(\v2\x1d.cpay.api.v1.blockchain.ChainR\x06chains\"J\n" +
-	"\x11ListAssetsRequest\x125\n" +
-	"\x05chain\x18\x01 \x01(\x0e2\x1f.cpay.api.v1.blockchain.ChainIDR\x05chain\"K\n" +
-	"\x12ListAssetsResponse\x125\n" +
-	"\x06assets\x18\x01 \x03(\v2\x1d.cpay.api.v1.blockchain.AssetR\x06assets2\xd3\x01\n" +
+	"\x1dapi/v1/merchant/service.proto\x12\x14cpay.api.v1.merchant\x1a\x1bapi/v1/merchant/asset.proto\x1a\x1bapi/v1/merchant/chain.proto\x1a\x19blockchain/v1/chain.proto\"\x13\n" +
+	"\x11ListChainsRequest\"I\n" +
+	"\x12ListChainsResponse\x123\n" +
+	"\x06chains\x18\x01 \x03(\v2\x1b.cpay.api.v1.merchant.ChainR\x06chains\"I\n" +
+	"\x11ListAssetsRequest\x124\n" +
+	"\bchain_id\x18\x01 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\achainId\"I\n" +
+	"\x12ListAssetsResponse\x123\n" +
+	"\x06assets\x18\x01 \x03(\v2\x1b.cpay.api.v1.merchant.AssetR\x06assets2\xd3\x01\n" +
 	"\x0fMerchantService\x12_\n" +
 	"\n" +
 	"ListChains\x12'.cpay.api.v1.merchant.ListChainsRequest\x1a(.cpay.api.v1.merchant.ListChainsResponse\x12_\n" +
@@ -226,14 +226,14 @@ var file_api_v1_merchant_service_proto_goTypes = []any{
 	(*ListChainsResponse)(nil), // 1: cpay.api.v1.merchant.ListChainsResponse
 	(*ListAssetsRequest)(nil),  // 2: cpay.api.v1.merchant.ListAssetsRequest
 	(*ListAssetsResponse)(nil), // 3: cpay.api.v1.merchant.ListAssetsResponse
-	(*blockchain.Chain)(nil),   // 4: cpay.api.v1.blockchain.Chain
-	(blockchain.ChainID)(0),    // 5: cpay.api.v1.blockchain.ChainID
-	(*blockchain.Asset)(nil),   // 6: cpay.api.v1.blockchain.Asset
+	(*Chain)(nil),              // 4: cpay.api.v1.merchant.Chain
+	(v1.Chain)(0),              // 5: cpay.blockchain.v1.Chain
+	(*Asset)(nil),              // 6: cpay.api.v1.merchant.Asset
 }
 var file_api_v1_merchant_service_proto_depIdxs = []int32{
-	4, // 0: cpay.api.v1.merchant.ListChainsResponse.chains:type_name -> cpay.api.v1.blockchain.Chain
-	5, // 1: cpay.api.v1.merchant.ListAssetsRequest.chain:type_name -> cpay.api.v1.blockchain.ChainID
-	6, // 2: cpay.api.v1.merchant.ListAssetsResponse.assets:type_name -> cpay.api.v1.blockchain.Asset
+	4, // 0: cpay.api.v1.merchant.ListChainsResponse.chains:type_name -> cpay.api.v1.merchant.Chain
+	5, // 1: cpay.api.v1.merchant.ListAssetsRequest.chain_id:type_name -> cpay.blockchain.v1.Chain
+	6, // 2: cpay.api.v1.merchant.ListAssetsResponse.assets:type_name -> cpay.api.v1.merchant.Asset
 	0, // 3: cpay.api.v1.merchant.MerchantService.ListChains:input_type -> cpay.api.v1.merchant.ListChainsRequest
 	2, // 4: cpay.api.v1.merchant.MerchantService.ListAssets:input_type -> cpay.api.v1.merchant.ListAssetsRequest
 	1, // 5: cpay.api.v1.merchant.MerchantService.ListChains:output_type -> cpay.api.v1.merchant.ListChainsResponse
@@ -250,6 +250,8 @@ func file_api_v1_merchant_service_proto_init() {
 	if File_api_v1_merchant_service_proto != nil {
 		return
 	}
+	file_api_v1_merchant_asset_proto_init()
+	file_api_v1_merchant_chain_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
