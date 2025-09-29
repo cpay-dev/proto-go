@@ -7,7 +7,6 @@
 package merchant
 
 import (
-	_ "github.com/cpay-dev/proto-go/blockchain/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -179,145 +178,11 @@ func (x *PaymentIntent) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-type CreatePaymentIntentRequest struct {
-	state   protoimpl.MessageState `protogen:"open.v1"`
-	AssetId string                 `protobuf:"bytes,1,opt,name=asset_id,json=assetId,proto3" json:"asset_id,omitempty"`
-	// Types that are valid to be assigned to Amount:
-	//
-	//	*CreatePaymentIntentRequest_AmountUsd
-	//	*CreatePaymentIntentRequest_AmountAsset
-	Amount        isCreatePaymentIntentRequest_Amount `protobuf_oneof:"amount"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreatePaymentIntentRequest) Reset() {
-	*x = CreatePaymentIntentRequest{}
-	mi := &file_api_v1_merchant_payment_intent_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreatePaymentIntentRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreatePaymentIntentRequest) ProtoMessage() {}
-
-func (x *CreatePaymentIntentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_merchant_payment_intent_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreatePaymentIntentRequest.ProtoReflect.Descriptor instead.
-func (*CreatePaymentIntentRequest) Descriptor() ([]byte, []int) {
-	return file_api_v1_merchant_payment_intent_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *CreatePaymentIntentRequest) GetAssetId() string {
-	if x != nil {
-		return x.AssetId
-	}
-	return ""
-}
-
-func (x *CreatePaymentIntentRequest) GetAmount() isCreatePaymentIntentRequest_Amount {
-	if x != nil {
-		return x.Amount
-	}
-	return nil
-}
-
-func (x *CreatePaymentIntentRequest) GetAmountUsd() string {
-	if x != nil {
-		if x, ok := x.Amount.(*CreatePaymentIntentRequest_AmountUsd); ok {
-			return x.AmountUsd
-		}
-	}
-	return ""
-}
-
-func (x *CreatePaymentIntentRequest) GetAmountAsset() string {
-	if x != nil {
-		if x, ok := x.Amount.(*CreatePaymentIntentRequest_AmountAsset); ok {
-			return x.AmountAsset
-		}
-	}
-	return ""
-}
-
-type isCreatePaymentIntentRequest_Amount interface {
-	isCreatePaymentIntentRequest_Amount()
-}
-
-type CreatePaymentIntentRequest_AmountUsd struct {
-	AmountUsd string `protobuf:"bytes,2,opt,name=amount_usd,json=amountUsd,proto3,oneof"`
-}
-
-type CreatePaymentIntentRequest_AmountAsset struct {
-	AmountAsset string `protobuf:"bytes,3,opt,name=amount_asset,json=amountAsset,proto3,oneof"`
-}
-
-func (*CreatePaymentIntentRequest_AmountUsd) isCreatePaymentIntentRequest_Amount() {}
-
-func (*CreatePaymentIntentRequest_AmountAsset) isCreatePaymentIntentRequest_Amount() {}
-
-type CreatePaymentIntentResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PaymentIntent *PaymentIntent         `protobuf:"bytes,1,opt,name=payment_intent,json=paymentIntent,proto3" json:"payment_intent,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreatePaymentIntentResponse) Reset() {
-	*x = CreatePaymentIntentResponse{}
-	mi := &file_api_v1_merchant_payment_intent_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreatePaymentIntentResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreatePaymentIntentResponse) ProtoMessage() {}
-
-func (x *CreatePaymentIntentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_merchant_payment_intent_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreatePaymentIntentResponse.ProtoReflect.Descriptor instead.
-func (*CreatePaymentIntentResponse) Descriptor() ([]byte, []int) {
-	return file_api_v1_merchant_payment_intent_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *CreatePaymentIntentResponse) GetPaymentIntent() *PaymentIntent {
-	if x != nil {
-		return x.PaymentIntent
-	}
-	return nil
-}
-
 var File_api_v1_merchant_payment_intent_proto protoreflect.FileDescriptor
 
 const file_api_v1_merchant_payment_intent_proto_rawDesc = "" +
 	"\n" +
-	"$api/v1/merchant/payment-intent.proto\x12\x14cpay.api.v1.merchant\x1a\x1bapi/v1/merchant/asset.proto\x1a\x1bapi/v1/merchant/chain.proto\x1a\x19blockchain/v1/chain.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb5\x02\n" +
+	"$api/v1/merchant/payment-intent.proto\x12\x14cpay.api.v1.merchant\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb5\x02\n" +
 	"\rPaymentIntent\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12A\n" +
 	"\x06status\x18\x02 \x01(\x0e2).cpay.api.v1.merchant.PaymentIntentStatusR\x06status\x12\x19\n" +
@@ -328,15 +193,7 @@ const file_api_v1_merchant_payment_intent_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x87\x01\n" +
-	"\x1aCreatePaymentIntentRequest\x12\x19\n" +
-	"\basset_id\x18\x01 \x01(\tR\aassetId\x12\x1f\n" +
-	"\n" +
-	"amount_usd\x18\x02 \x01(\tH\x00R\tamountUsd\x12#\n" +
-	"\famount_asset\x18\x03 \x01(\tH\x00R\vamountAssetB\b\n" +
-	"\x06amount\"i\n" +
-	"\x1bCreatePaymentIntentResponse\x12J\n" +
-	"\x0epayment_intent\x18\x01 \x01(\v2#.cpay.api.v1.merchant.PaymentIntentR\rpaymentIntent*\xd2\x02\n" +
+	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt*\xd2\x02\n" +
 	"\x13PaymentIntentStatus\x12%\n" +
 	"!PAYMENT_INTENT_STATUS_UNSPECIFIED\x10\x00\x12*\n" +
 	"&PAYMENT_INTENT_STATUS_AWAITING_PAYMENT\x10\x01\x12\x1e\n" +
@@ -360,24 +217,21 @@ func file_api_v1_merchant_payment_intent_proto_rawDescGZIP() []byte {
 }
 
 var file_api_v1_merchant_payment_intent_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_api_v1_merchant_payment_intent_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_api_v1_merchant_payment_intent_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_api_v1_merchant_payment_intent_proto_goTypes = []any{
-	(PaymentIntentStatus)(0),            // 0: cpay.api.v1.merchant.PaymentIntentStatus
-	(*PaymentIntent)(nil),               // 1: cpay.api.v1.merchant.PaymentIntent
-	(*CreatePaymentIntentRequest)(nil),  // 2: cpay.api.v1.merchant.CreatePaymentIntentRequest
-	(*CreatePaymentIntentResponse)(nil), // 3: cpay.api.v1.merchant.CreatePaymentIntentResponse
-	(*timestamppb.Timestamp)(nil),       // 4: google.protobuf.Timestamp
+	(PaymentIntentStatus)(0),      // 0: cpay.api.v1.merchant.PaymentIntentStatus
+	(*PaymentIntent)(nil),         // 1: cpay.api.v1.merchant.PaymentIntent
+	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
 var file_api_v1_merchant_payment_intent_proto_depIdxs = []int32{
 	0, // 0: cpay.api.v1.merchant.PaymentIntent.status:type_name -> cpay.api.v1.merchant.PaymentIntentStatus
-	4, // 1: cpay.api.v1.merchant.PaymentIntent.created_at:type_name -> google.protobuf.Timestamp
-	4, // 2: cpay.api.v1.merchant.PaymentIntent.updated_at:type_name -> google.protobuf.Timestamp
-	1, // 3: cpay.api.v1.merchant.CreatePaymentIntentResponse.payment_intent:type_name -> cpay.api.v1.merchant.PaymentIntent
-	4, // [4:4] is the sub-list for method output_type
-	4, // [4:4] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	2, // 1: cpay.api.v1.merchant.PaymentIntent.created_at:type_name -> google.protobuf.Timestamp
+	2, // 2: cpay.api.v1.merchant.PaymentIntent.updated_at:type_name -> google.protobuf.Timestamp
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_api_v1_merchant_payment_intent_proto_init() }
@@ -385,19 +239,13 @@ func file_api_v1_merchant_payment_intent_proto_init() {
 	if File_api_v1_merchant_payment_intent_proto != nil {
 		return
 	}
-	file_api_v1_merchant_asset_proto_init()
-	file_api_v1_merchant_chain_proto_init()
-	file_api_v1_merchant_payment_intent_proto_msgTypes[1].OneofWrappers = []any{
-		(*CreatePaymentIntentRequest_AmountUsd)(nil),
-		(*CreatePaymentIntentRequest_AmountAsset)(nil),
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_v1_merchant_payment_intent_proto_rawDesc), len(file_api_v1_merchant_payment_intent_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   3,
+			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -74,86 +74,6 @@ func (x *Chain) GetName() string {
 	return ""
 }
 
-type ListChainsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListChainsRequest) Reset() {
-	*x = ListChainsRequest{}
-	mi := &file_api_v1_merchant_chain_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListChainsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListChainsRequest) ProtoMessage() {}
-
-func (x *ListChainsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_merchant_chain_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListChainsRequest.ProtoReflect.Descriptor instead.
-func (*ListChainsRequest) Descriptor() ([]byte, []int) {
-	return file_api_v1_merchant_chain_proto_rawDescGZIP(), []int{1}
-}
-
-type ListChainsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Chains        []*Chain               `protobuf:"bytes,1,rep,name=chains,proto3" json:"chains,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListChainsResponse) Reset() {
-	*x = ListChainsResponse{}
-	mi := &file_api_v1_merchant_chain_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListChainsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListChainsResponse) ProtoMessage() {}
-
-func (x *ListChainsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_merchant_chain_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListChainsResponse.ProtoReflect.Descriptor instead.
-func (*ListChainsResponse) Descriptor() ([]byte, []int) {
-	return file_api_v1_merchant_chain_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *ListChainsResponse) GetChains() []*Chain {
-	if x != nil {
-		return x.Chains
-	}
-	return nil
-}
-
 var File_api_v1_merchant_chain_proto protoreflect.FileDescriptor
 
 const file_api_v1_merchant_chain_proto_rawDesc = "" +
@@ -161,10 +81,7 @@ const file_api_v1_merchant_chain_proto_rawDesc = "" +
 	"\x1bapi/v1/merchant/chain.proto\x12\x14cpay.api.v1.merchant\x1a\x19blockchain/v1/chain.proto\"F\n" +
 	"\x05Chain\x12)\n" +
 	"\x02id\x18\x01 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\x13\n" +
-	"\x11ListChainsRequest\"I\n" +
-	"\x12ListChainsResponse\x123\n" +
-	"\x06chains\x18\x01 \x03(\v2\x1b.cpay.api.v1.merchant.ChainR\x06chainsB.Z,github.com/cpay-dev/proto-go/api/v1/merchantb\x06proto3"
+	"\x04name\x18\x02 \x01(\tR\x04nameB.Z,github.com/cpay-dev/proto-go/api/v1/merchantb\x06proto3"
 
 var (
 	file_api_v1_merchant_chain_proto_rawDescOnce sync.Once
@@ -178,21 +95,18 @@ func file_api_v1_merchant_chain_proto_rawDescGZIP() []byte {
 	return file_api_v1_merchant_chain_proto_rawDescData
 }
 
-var file_api_v1_merchant_chain_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_api_v1_merchant_chain_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_api_v1_merchant_chain_proto_goTypes = []any{
-	(*Chain)(nil),              // 0: cpay.api.v1.merchant.Chain
-	(*ListChainsRequest)(nil),  // 1: cpay.api.v1.merchant.ListChainsRequest
-	(*ListChainsResponse)(nil), // 2: cpay.api.v1.merchant.ListChainsResponse
-	(v1.Chain)(0),              // 3: cpay.blockchain.v1.Chain
+	(*Chain)(nil), // 0: cpay.api.v1.merchant.Chain
+	(v1.Chain)(0), // 1: cpay.blockchain.v1.Chain
 }
 var file_api_v1_merchant_chain_proto_depIdxs = []int32{
-	3, // 0: cpay.api.v1.merchant.Chain.id:type_name -> cpay.blockchain.v1.Chain
-	0, // 1: cpay.api.v1.merchant.ListChainsResponse.chains:type_name -> cpay.api.v1.merchant.Chain
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	1, // 0: cpay.api.v1.merchant.Chain.id:type_name -> cpay.blockchain.v1.Chain
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_api_v1_merchant_chain_proto_init() }
@@ -206,7 +120,7 @@ func file_api_v1_merchant_chain_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_v1_merchant_chain_proto_rawDesc), len(file_api_v1_merchant_chain_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
