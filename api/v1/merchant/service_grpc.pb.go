@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MerchantService_ListChains_FullMethodName = "/cpay.api.v1.merchant.MerchantService/ListChains"
-	MerchantService_ListAssets_FullMethodName = "/cpay.api.v1.merchant.MerchantService/ListAssets"
+	MerchantService_ListChains_FullMethodName          = "/cpay.api.v1.merchant.MerchantService/ListChains"
+	MerchantService_ListAssets_FullMethodName          = "/cpay.api.v1.merchant.MerchantService/ListAssets"
+	MerchantService_CreatePaymentIntent_FullMethodName = "/cpay.api.v1.merchant.MerchantService/CreatePaymentIntent"
 )
 
 // MerchantServiceClient is the client API for MerchantService service.
@@ -29,6 +30,7 @@ const (
 type MerchantServiceClient interface {
 	ListChains(ctx context.Context, in *ListChainsRequest, opts ...grpc.CallOption) (*ListChainsResponse, error)
 	ListAssets(ctx context.Context, in *ListAssetsRequest, opts ...grpc.CallOption) (*ListAssetsResponse, error)
+	CreatePaymentIntent(ctx context.Context, in *CreatePaymentIntentRequest, opts ...grpc.CallOption) (*CreatePaymentIntentResponse, error)
 }
 
 type merchantServiceClient struct {
@@ -59,12 +61,23 @@ func (c *merchantServiceClient) ListAssets(ctx context.Context, in *ListAssetsRe
 	return out, nil
 }
 
+func (c *merchantServiceClient) CreatePaymentIntent(ctx context.Context, in *CreatePaymentIntentRequest, opts ...grpc.CallOption) (*CreatePaymentIntentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreatePaymentIntentResponse)
+	err := c.cc.Invoke(ctx, MerchantService_CreatePaymentIntent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MerchantServiceServer is the server API for MerchantService service.
 // All implementations must embed UnimplementedMerchantServiceServer
 // for forward compatibility.
 type MerchantServiceServer interface {
 	ListChains(context.Context, *ListChainsRequest) (*ListChainsResponse, error)
 	ListAssets(context.Context, *ListAssetsRequest) (*ListAssetsResponse, error)
+	CreatePaymentIntent(context.Context, *CreatePaymentIntentRequest) (*CreatePaymentIntentResponse, error)
 	mustEmbedUnimplementedMerchantServiceServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedMerchantServiceServer) ListChains(context.Context, *ListChain
 }
 func (UnimplementedMerchantServiceServer) ListAssets(context.Context, *ListAssetsRequest) (*ListAssetsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAssets not implemented")
+}
+func (UnimplementedMerchantServiceServer) CreatePaymentIntent(context.Context, *CreatePaymentIntentRequest) (*CreatePaymentIntentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePaymentIntent not implemented")
 }
 func (UnimplementedMerchantServiceServer) mustEmbedUnimplementedMerchantServiceServer() {}
 func (UnimplementedMerchantServiceServer) testEmbeddedByValue()                         {}
@@ -138,6 +154,24 @@ func _MerchantService_ListAssets_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MerchantService_CreatePaymentIntent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePaymentIntentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MerchantServiceServer).CreatePaymentIntent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MerchantService_CreatePaymentIntent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MerchantServiceServer).CreatePaymentIntent(ctx, req.(*CreatePaymentIntentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MerchantService_ServiceDesc is the grpc.ServiceDesc for MerchantService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var MerchantService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAssets",
 			Handler:    _MerchantService_ListAssets_Handler,
+		},
+		{
+			MethodName: "CreatePaymentIntent",
+			Handler:    _MerchantService_CreatePaymentIntent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
