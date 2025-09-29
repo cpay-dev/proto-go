@@ -180,9 +180,13 @@ func (x *PaymentIntent) GetUpdatedAt() *timestamppb.Timestamp {
 }
 
 type CreatePaymentIntentRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	AssetId       string                 `protobuf:"bytes,1,opt,name=asset_id,json=assetId,proto3" json:"asset_id,omitempty"`
-	Amount        string                 `protobuf:"bytes,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	state   protoimpl.MessageState `protogen:"open.v1"`
+	AssetId string                 `protobuf:"bytes,1,opt,name=asset_id,json=assetId,proto3" json:"asset_id,omitempty"`
+	// Types that are valid to be assigned to Amount:
+	//
+	//	*CreatePaymentIntentRequest_AmountUsd
+	//	*CreatePaymentIntentRequest_AmountAsset
+	Amount        isCreatePaymentIntentRequest_Amount `protobuf_oneof:"amount"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -224,12 +228,46 @@ func (x *CreatePaymentIntentRequest) GetAssetId() string {
 	return ""
 }
 
-func (x *CreatePaymentIntentRequest) GetAmount() string {
+func (x *CreatePaymentIntentRequest) GetAmount() isCreatePaymentIntentRequest_Amount {
 	if x != nil {
 		return x.Amount
 	}
+	return nil
+}
+
+func (x *CreatePaymentIntentRequest) GetAmountUsd() string {
+	if x != nil {
+		if x, ok := x.Amount.(*CreatePaymentIntentRequest_AmountUsd); ok {
+			return x.AmountUsd
+		}
+	}
 	return ""
 }
+
+func (x *CreatePaymentIntentRequest) GetAmountAsset() string {
+	if x != nil {
+		if x, ok := x.Amount.(*CreatePaymentIntentRequest_AmountAsset); ok {
+			return x.AmountAsset
+		}
+	}
+	return ""
+}
+
+type isCreatePaymentIntentRequest_Amount interface {
+	isCreatePaymentIntentRequest_Amount()
+}
+
+type CreatePaymentIntentRequest_AmountUsd struct {
+	AmountUsd string `protobuf:"bytes,2,opt,name=amount_usd,json=amountUsd,proto3,oneof"`
+}
+
+type CreatePaymentIntentRequest_AmountAsset struct {
+	AmountAsset string `protobuf:"bytes,3,opt,name=amount_asset,json=amountAsset,proto3,oneof"`
+}
+
+func (*CreatePaymentIntentRequest_AmountUsd) isCreatePaymentIntentRequest_Amount() {}
+
+func (*CreatePaymentIntentRequest_AmountAsset) isCreatePaymentIntentRequest_Amount() {}
 
 type CreatePaymentIntentResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -290,10 +328,13 @@ const file_api_v1_merchant_payment_intent_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"O\n" +
+	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x87\x01\n" +
 	"\x1aCreatePaymentIntentRequest\x12\x19\n" +
-	"\basset_id\x18\x01 \x01(\tR\aassetId\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\tR\x06amount\"i\n" +
+	"\basset_id\x18\x01 \x01(\tR\aassetId\x12\x1f\n" +
+	"\n" +
+	"amount_usd\x18\x02 \x01(\tH\x00R\tamountUsd\x12#\n" +
+	"\famount_asset\x18\x03 \x01(\tH\x00R\vamountAssetB\b\n" +
+	"\x06amount\"i\n" +
 	"\x1bCreatePaymentIntentResponse\x12J\n" +
 	"\x0epayment_intent\x18\x01 \x01(\v2#.cpay.api.v1.merchant.PaymentIntentR\rpaymentIntent*\xd2\x02\n" +
 	"\x13PaymentIntentStatus\x12%\n" +
@@ -346,6 +387,10 @@ func file_api_v1_merchant_payment_intent_proto_init() {
 	}
 	file_api_v1_merchant_asset_proto_init()
 	file_api_v1_merchant_chain_proto_init()
+	file_api_v1_merchant_payment_intent_proto_msgTypes[1].OneofWrappers = []any{
+		(*CreatePaymentIntentRequest_AmountUsd)(nil),
+		(*CreatePaymentIntentRequest_AmountAsset)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
