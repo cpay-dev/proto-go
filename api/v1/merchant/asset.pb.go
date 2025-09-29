@@ -102,6 +102,7 @@ type AssetMetadata struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Address       string                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 	Decimals      uint32                 `protobuf:"varint,2,opt,name=decimals,proto3" json:"decimals,omitempty"`
+	IsStable      bool                   `protobuf:"varint,3,opt,name=is_stable,json=isStable,proto3" json:"is_stable,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,92 +151,11 @@ func (x *AssetMetadata) GetDecimals() uint32 {
 	return 0
 }
 
-type ListAssetsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ChainId       v1.Chain               `protobuf:"varint,1,opt,name=chain_id,json=chainId,proto3,enum=cpay.blockchain.v1.Chain" json:"chain_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListAssetsRequest) Reset() {
-	*x = ListAssetsRequest{}
-	mi := &file_api_v1_merchant_asset_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListAssetsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListAssetsRequest) ProtoMessage() {}
-
-func (x *ListAssetsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_merchant_asset_proto_msgTypes[2]
+func (x *AssetMetadata) GetIsStable() bool {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
+		return x.IsStable
 	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListAssetsRequest.ProtoReflect.Descriptor instead.
-func (*ListAssetsRequest) Descriptor() ([]byte, []int) {
-	return file_api_v1_merchant_asset_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *ListAssetsRequest) GetChainId() v1.Chain {
-	if x != nil {
-		return x.ChainId
-	}
-	return v1.Chain(0)
-}
-
-type ListAssetsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Assets        []*Asset               `protobuf:"bytes,1,rep,name=assets,proto3" json:"assets,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListAssetsResponse) Reset() {
-	*x = ListAssetsResponse{}
-	mi := &file_api_v1_merchant_asset_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListAssetsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListAssetsResponse) ProtoMessage() {}
-
-func (x *ListAssetsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_merchant_asset_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListAssetsResponse.ProtoReflect.Descriptor instead.
-func (*ListAssetsResponse) Descriptor() ([]byte, []int) {
-	return file_api_v1_merchant_asset_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *ListAssetsResponse) GetAssets() []*Asset {
-	if x != nil {
-		return x.Assets
-	}
-	return nil
+	return false
 }
 
 var File_api_v1_merchant_asset_proto protoreflect.FileDescriptor
@@ -248,14 +168,11 @@ const file_api_v1_merchant_asset_proto_rawDesc = "" +
 	"\x05chain\x18\x02 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\x05chain\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x16\n" +
 	"\x06symbol\x18\x04 \x01(\tR\x06symbol\x12?\n" +
-	"\bmetadata\x18\x05 \x01(\v2#.cpay.api.v1.merchant.AssetMetadataR\bmetadata\"E\n" +
+	"\bmetadata\x18\x05 \x01(\v2#.cpay.api.v1.merchant.AssetMetadataR\bmetadata\"b\n" +
 	"\rAssetMetadata\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x1a\n" +
-	"\bdecimals\x18\x02 \x01(\rR\bdecimals\"I\n" +
-	"\x11ListAssetsRequest\x124\n" +
-	"\bchain_id\x18\x01 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\achainId\"I\n" +
-	"\x12ListAssetsResponse\x123\n" +
-	"\x06assets\x18\x01 \x03(\v2\x1b.cpay.api.v1.merchant.AssetR\x06assetsB.Z,github.com/cpay-dev/proto-go/api/v1/merchantb\x06proto3"
+	"\bdecimals\x18\x02 \x01(\rR\bdecimals\x12\x1b\n" +
+	"\tis_stable\x18\x03 \x01(\bR\bisStableB.Z,github.com/cpay-dev/proto-go/api/v1/merchantb\x06proto3"
 
 var (
 	file_api_v1_merchant_asset_proto_rawDescOnce sync.Once
@@ -269,24 +186,20 @@ func file_api_v1_merchant_asset_proto_rawDescGZIP() []byte {
 	return file_api_v1_merchant_asset_proto_rawDescData
 }
 
-var file_api_v1_merchant_asset_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_api_v1_merchant_asset_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_api_v1_merchant_asset_proto_goTypes = []any{
-	(*Asset)(nil),              // 0: cpay.api.v1.merchant.Asset
-	(*AssetMetadata)(nil),      // 1: cpay.api.v1.merchant.AssetMetadata
-	(*ListAssetsRequest)(nil),  // 2: cpay.api.v1.merchant.ListAssetsRequest
-	(*ListAssetsResponse)(nil), // 3: cpay.api.v1.merchant.ListAssetsResponse
-	(v1.Chain)(0),              // 4: cpay.blockchain.v1.Chain
+	(*Asset)(nil),         // 0: cpay.api.v1.merchant.Asset
+	(*AssetMetadata)(nil), // 1: cpay.api.v1.merchant.AssetMetadata
+	(v1.Chain)(0),         // 2: cpay.blockchain.v1.Chain
 }
 var file_api_v1_merchant_asset_proto_depIdxs = []int32{
-	4, // 0: cpay.api.v1.merchant.Asset.chain:type_name -> cpay.blockchain.v1.Chain
+	2, // 0: cpay.api.v1.merchant.Asset.chain:type_name -> cpay.blockchain.v1.Chain
 	1, // 1: cpay.api.v1.merchant.Asset.metadata:type_name -> cpay.api.v1.merchant.AssetMetadata
-	4, // 2: cpay.api.v1.merchant.ListAssetsRequest.chain_id:type_name -> cpay.blockchain.v1.Chain
-	0, // 3: cpay.api.v1.merchant.ListAssetsResponse.assets:type_name -> cpay.api.v1.merchant.Asset
-	4, // [4:4] is the sub-list for method output_type
-	4, // [4:4] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_api_v1_merchant_asset_proto_init() }
@@ -300,7 +213,7 @@ func file_api_v1_merchant_asset_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_v1_merchant_asset_proto_rawDesc), len(file_api_v1_merchant_asset_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

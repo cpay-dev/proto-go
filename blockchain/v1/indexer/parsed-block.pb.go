@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.8
 // 	protoc        v6.32.0
-// source: blockchain/v1/indexer/parsed_block.proto
+// source: blockchain/v1/indexer/parsed-block.proto
 
 package indexer
 
@@ -199,7 +199,7 @@ var File_blockchain_v1_indexer_parsed_block_proto protoreflect.FileDescriptor
 
 const file_blockchain_v1_indexer_parsed_block_proto_rawDesc = "" +
 	"\n" +
-	"(blockchain/v1/indexer/parsed_block.proto\x12\x1acpay.blockchain.v1.indexer\x1a!blockchain/v1/indexer/block.proto\"\x94\x01\n" +
+	"(blockchain/v1/indexer/parsed-block.proto\x12\x1acpay.blockchain.v1.indexer\x1a!blockchain/v1/indexer/block.proto\"\x94\x01\n" +
 	"\vParsedBlock\x12;\n" +
 	"\x05block\x18\x01 \x01(\v2%.cpay.blockchain.v1.indexer.BlockBaseR\x05block\x12H\n" +
 	"\ttransfers\x18\x02 \x03(\v2*.cpay.blockchain.v1.indexer.ParsedTransferR\ttransfers\"\xbb\x01\n" +
