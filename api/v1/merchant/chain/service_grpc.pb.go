@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.32.0
-// source: api/v1/merchant/chain-service.proto
+// source: api/v1/merchant/chain/service.proto
 
-package merchant
+package chain
 
 import (
 	context "context"
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ChainService_ListChains_FullMethodName = "/cpay.api.v1.merchant.ChainService/ListChains"
+	ChainService_ListChains_FullMethodName = "/cpay.api.v1.merchant.chain.ChainService/ListChains"
 )
 
 // ChainServiceClient is the client API for ChainService service.
@@ -108,7 +108,7 @@ func _ChainService_ListChains_Handler(srv interface{}, ctx context.Context, dec 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ChainService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cpay.api.v1.merchant.ChainService",
+	ServiceName: "cpay.api.v1.merchant.chain.ChainService",
 	HandlerType: (*ChainServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -117,5 +117,5 @@ var ChainService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/v1/merchant/chain-service.proto",
+	Metadata: "api/v1/merchant/chain/service.proto",
 }

@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.32.0
-// source: api/v1/merchant/asset-service.proto
+// source: api/v1/merchant/asset/service.proto
 
-package merchant
+package asset
 
 import (
 	context "context"
@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AssetService_ListAssets_FullMethodName    = "/cpay.api.v1.merchant.AssetService/ListAssets"
-	AssetService_GetAssetPrice_FullMethodName = "/cpay.api.v1.merchant.AssetService/GetAssetPrice"
+	AssetService_ListAssets_FullMethodName    = "/cpay.api.v1.merchant.asset.AssetService/ListAssets"
+	AssetService_GetAssetPrice_FullMethodName = "/cpay.api.v1.merchant.asset.AssetService/GetAssetPrice"
 )
 
 // AssetServiceClient is the client API for AssetService service.
@@ -142,7 +142,7 @@ func _AssetService_GetAssetPrice_Handler(srv interface{}, ctx context.Context, d
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AssetService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cpay.api.v1.merchant.AssetService",
+	ServiceName: "cpay.api.v1.merchant.asset.AssetService",
 	HandlerType: (*AssetServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -155,5 +155,5 @@ var AssetService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/v1/merchant/asset-service.proto",
+	Metadata: "api/v1/merchant/asset/service.proto",
 }
