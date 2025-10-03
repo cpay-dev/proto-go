@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.8
 // 	protoc        v6.32.0
-// source: api/v1/merchant/payment-intent.proto
+// source: api/v1/merchant/payment/intent.proto
 
-package merchant
+package payment
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -22,74 +22,74 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type PaymentIntentStatus int32
+type IntentStatus int32
 
 const (
-	PaymentIntentStatus_PAYMENT_INTENT_STATUS_UNSPECIFIED       PaymentIntentStatus = 0
-	PaymentIntentStatus_PAYMENT_INTENT_STATUS_AWAITING_PAYMENT  PaymentIntentStatus = 1
-	PaymentIntentStatus_PAYMENT_INTENT_STATUS_PAID              PaymentIntentStatus = 2
-	PaymentIntentStatus_PAYMENT_INTENT_STATUS_EXPIRED           PaymentIntentStatus = 3
-	PaymentIntentStatus_PAYMENT_INTENT_STATUS_AML_CHECK_PENDING PaymentIntentStatus = 4
-	PaymentIntentStatus_PAYMENT_INTENT_STATUS_AML_CHECK_FAILED  PaymentIntentStatus = 5
-	PaymentIntentStatus_PAYMENT_INTENT_STATUS_REFUND_PENDING    PaymentIntentStatus = 6
-	PaymentIntentStatus_PAYMENT_INTENT_STATUS_REFUNDED          PaymentIntentStatus = 7
+	IntentStatus_INTENT_STATUS_UNSPECIFIED       IntentStatus = 0
+	IntentStatus_INTENT_STATUS_AWAITING_PAYMENT  IntentStatus = 1
+	IntentStatus_INTENT_STATUS_PAID              IntentStatus = 2
+	IntentStatus_INTENT_STATUS_EXPIRED           IntentStatus = 3
+	IntentStatus_INTENT_STATUS_AML_CHECK_PENDING IntentStatus = 4
+	IntentStatus_INTENT_STATUS_AML_CHECK_FAILED  IntentStatus = 5
+	IntentStatus_INTENT_STATUS_REFUND_PENDING    IntentStatus = 6
+	IntentStatus_INTENT_STATUS_REFUNDED          IntentStatus = 7
 )
 
-// Enum value maps for PaymentIntentStatus.
+// Enum value maps for IntentStatus.
 var (
-	PaymentIntentStatus_name = map[int32]string{
-		0: "PAYMENT_INTENT_STATUS_UNSPECIFIED",
-		1: "PAYMENT_INTENT_STATUS_AWAITING_PAYMENT",
-		2: "PAYMENT_INTENT_STATUS_PAID",
-		3: "PAYMENT_INTENT_STATUS_EXPIRED",
-		4: "PAYMENT_INTENT_STATUS_AML_CHECK_PENDING",
-		5: "PAYMENT_INTENT_STATUS_AML_CHECK_FAILED",
-		6: "PAYMENT_INTENT_STATUS_REFUND_PENDING",
-		7: "PAYMENT_INTENT_STATUS_REFUNDED",
+	IntentStatus_name = map[int32]string{
+		0: "INTENT_STATUS_UNSPECIFIED",
+		1: "INTENT_STATUS_AWAITING_PAYMENT",
+		2: "INTENT_STATUS_PAID",
+		3: "INTENT_STATUS_EXPIRED",
+		4: "INTENT_STATUS_AML_CHECK_PENDING",
+		5: "INTENT_STATUS_AML_CHECK_FAILED",
+		6: "INTENT_STATUS_REFUND_PENDING",
+		7: "INTENT_STATUS_REFUNDED",
 	}
-	PaymentIntentStatus_value = map[string]int32{
-		"PAYMENT_INTENT_STATUS_UNSPECIFIED":       0,
-		"PAYMENT_INTENT_STATUS_AWAITING_PAYMENT":  1,
-		"PAYMENT_INTENT_STATUS_PAID":              2,
-		"PAYMENT_INTENT_STATUS_EXPIRED":           3,
-		"PAYMENT_INTENT_STATUS_AML_CHECK_PENDING": 4,
-		"PAYMENT_INTENT_STATUS_AML_CHECK_FAILED":  5,
-		"PAYMENT_INTENT_STATUS_REFUND_PENDING":    6,
-		"PAYMENT_INTENT_STATUS_REFUNDED":          7,
+	IntentStatus_value = map[string]int32{
+		"INTENT_STATUS_UNSPECIFIED":       0,
+		"INTENT_STATUS_AWAITING_PAYMENT":  1,
+		"INTENT_STATUS_PAID":              2,
+		"INTENT_STATUS_EXPIRED":           3,
+		"INTENT_STATUS_AML_CHECK_PENDING": 4,
+		"INTENT_STATUS_AML_CHECK_FAILED":  5,
+		"INTENT_STATUS_REFUND_PENDING":    6,
+		"INTENT_STATUS_REFUNDED":          7,
 	}
 )
 
-func (x PaymentIntentStatus) Enum() *PaymentIntentStatus {
-	p := new(PaymentIntentStatus)
+func (x IntentStatus) Enum() *IntentStatus {
+	p := new(IntentStatus)
 	*p = x
 	return p
 }
 
-func (x PaymentIntentStatus) String() string {
+func (x IntentStatus) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (PaymentIntentStatus) Descriptor() protoreflect.EnumDescriptor {
+func (IntentStatus) Descriptor() protoreflect.EnumDescriptor {
 	return file_api_v1_merchant_payment_intent_proto_enumTypes[0].Descriptor()
 }
 
-func (PaymentIntentStatus) Type() protoreflect.EnumType {
+func (IntentStatus) Type() protoreflect.EnumType {
 	return &file_api_v1_merchant_payment_intent_proto_enumTypes[0]
 }
 
-func (x PaymentIntentStatus) Number() protoreflect.EnumNumber {
+func (x IntentStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use PaymentIntentStatus.Descriptor instead.
-func (PaymentIntentStatus) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use IntentStatus.Descriptor instead.
+func (IntentStatus) EnumDescriptor() ([]byte, []int) {
 	return file_api_v1_merchant_payment_intent_proto_rawDescGZIP(), []int{0}
 }
 
-type PaymentIntent struct {
+type Intent struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Status        PaymentIntentStatus    `protobuf:"varint,2,opt,name=status,proto3,enum=cpay.api.v1.merchant.PaymentIntentStatus" json:"status,omitempty"`
+	Status        IntentStatus           `protobuf:"varint,2,opt,name=status,proto3,enum=cpay.api.v1.merchant.payment.IntentStatus" json:"status,omitempty"`
 	AssetId       string                 `protobuf:"bytes,3,opt,name=asset_id,json=assetId,proto3" json:"asset_id,omitempty"`
 	AmountUsd     string                 `protobuf:"bytes,4,opt,name=amount_usd,json=amountUsd,proto3" json:"amount_usd,omitempty"`
 	AmountAsset   string                 `protobuf:"bytes,5,opt,name=amount_asset,json=amountAsset,proto3" json:"amount_asset,omitempty"`
@@ -99,20 +99,20 @@ type PaymentIntent struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PaymentIntent) Reset() {
-	*x = PaymentIntent{}
+func (x *Intent) Reset() {
+	*x = Intent{}
 	mi := &file_api_v1_merchant_payment_intent_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PaymentIntent) String() string {
+func (x *Intent) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PaymentIntent) ProtoMessage() {}
+func (*Intent) ProtoMessage() {}
 
-func (x *PaymentIntent) ProtoReflect() protoreflect.Message {
+func (x *Intent) ProtoReflect() protoreflect.Message {
 	mi := &file_api_v1_merchant_payment_intent_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -124,54 +124,54 @@ func (x *PaymentIntent) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PaymentIntent.ProtoReflect.Descriptor instead.
-func (*PaymentIntent) Descriptor() ([]byte, []int) {
+// Deprecated: Use Intent.ProtoReflect.Descriptor instead.
+func (*Intent) Descriptor() ([]byte, []int) {
 	return file_api_v1_merchant_payment_intent_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *PaymentIntent) GetId() string {
+func (x *Intent) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *PaymentIntent) GetStatus() PaymentIntentStatus {
+func (x *Intent) GetStatus() IntentStatus {
 	if x != nil {
 		return x.Status
 	}
-	return PaymentIntentStatus_PAYMENT_INTENT_STATUS_UNSPECIFIED
+	return IntentStatus_INTENT_STATUS_UNSPECIFIED
 }
 
-func (x *PaymentIntent) GetAssetId() string {
+func (x *Intent) GetAssetId() string {
 	if x != nil {
 		return x.AssetId
 	}
 	return ""
 }
 
-func (x *PaymentIntent) GetAmountUsd() string {
+func (x *Intent) GetAmountUsd() string {
 	if x != nil {
 		return x.AmountUsd
 	}
 	return ""
 }
 
-func (x *PaymentIntent) GetAmountAsset() string {
+func (x *Intent) GetAmountAsset() string {
 	if x != nil {
 		return x.AmountAsset
 	}
 	return ""
 }
 
-func (x *PaymentIntent) GetCreatedAt() *timestamppb.Timestamp {
+func (x *Intent) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
 	return nil
 }
 
-func (x *PaymentIntent) GetUpdatedAt() *timestamppb.Timestamp {
+func (x *Intent) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
@@ -182,10 +182,10 @@ var File_api_v1_merchant_payment_intent_proto protoreflect.FileDescriptor
 
 const file_api_v1_merchant_payment_intent_proto_rawDesc = "" +
 	"\n" +
-	"$api/v1/merchant/payment-intent.proto\x12\x14cpay.api.v1.merchant\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb5\x02\n" +
-	"\rPaymentIntent\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12A\n" +
-	"\x06status\x18\x02 \x01(\x0e2).cpay.api.v1.merchant.PaymentIntentStatusR\x06status\x12\x19\n" +
+	"$api/v1/merchant/payment/intent.proto\x12\x1ccpay.api.v1.merchant.payment\x1a\x1fgoogle/protobuf/timestamp.proto\"\xaf\x02\n" +
+	"\x06Intent\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12B\n" +
+	"\x06status\x18\x02 \x01(\x0e2*.cpay.api.v1.merchant.payment.IntentStatusR\x06status\x12\x19\n" +
 	"\basset_id\x18\x03 \x01(\tR\aassetId\x12\x1d\n" +
 	"\n" +
 	"amount_usd\x18\x04 \x01(\tR\tamountUsd\x12!\n" +
@@ -193,16 +193,16 @@ const file_api_v1_merchant_payment_intent_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt*\xd2\x02\n" +
-	"\x13PaymentIntentStatus\x12%\n" +
-	"!PAYMENT_INTENT_STATUS_UNSPECIFIED\x10\x00\x12*\n" +
-	"&PAYMENT_INTENT_STATUS_AWAITING_PAYMENT\x10\x01\x12\x1e\n" +
-	"\x1aPAYMENT_INTENT_STATUS_PAID\x10\x02\x12!\n" +
-	"\x1dPAYMENT_INTENT_STATUS_EXPIRED\x10\x03\x12+\n" +
-	"'PAYMENT_INTENT_STATUS_AML_CHECK_PENDING\x10\x04\x12*\n" +
-	"&PAYMENT_INTENT_STATUS_AML_CHECK_FAILED\x10\x05\x12(\n" +
-	"$PAYMENT_INTENT_STATUS_REFUND_PENDING\x10\x06\x12\"\n" +
-	"\x1ePAYMENT_INTENT_STATUS_REFUNDED\x10\aB.Z,github.com/cpay-dev/proto-go/api/v1/merchantb\x06proto3"
+	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt*\x8b\x02\n" +
+	"\fIntentStatus\x12\x1d\n" +
+	"\x19INTENT_STATUS_UNSPECIFIED\x10\x00\x12\"\n" +
+	"\x1eINTENT_STATUS_AWAITING_PAYMENT\x10\x01\x12\x16\n" +
+	"\x12INTENT_STATUS_PAID\x10\x02\x12\x19\n" +
+	"\x15INTENT_STATUS_EXPIRED\x10\x03\x12#\n" +
+	"\x1fINTENT_STATUS_AML_CHECK_PENDING\x10\x04\x12\"\n" +
+	"\x1eINTENT_STATUS_AML_CHECK_FAILED\x10\x05\x12 \n" +
+	"\x1cINTENT_STATUS_REFUND_PENDING\x10\x06\x12\x1a\n" +
+	"\x16INTENT_STATUS_REFUNDED\x10\aB6Z4github.com/cpay-dev/proto-go/api/v1/merchant/paymentb\x06proto3"
 
 var (
 	file_api_v1_merchant_payment_intent_proto_rawDescOnce sync.Once
@@ -219,14 +219,14 @@ func file_api_v1_merchant_payment_intent_proto_rawDescGZIP() []byte {
 var file_api_v1_merchant_payment_intent_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_api_v1_merchant_payment_intent_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_api_v1_merchant_payment_intent_proto_goTypes = []any{
-	(PaymentIntentStatus)(0),      // 0: cpay.api.v1.merchant.PaymentIntentStatus
-	(*PaymentIntent)(nil),         // 1: cpay.api.v1.merchant.PaymentIntent
+	(IntentStatus)(0),             // 0: cpay.api.v1.merchant.payment.IntentStatus
+	(*Intent)(nil),                // 1: cpay.api.v1.merchant.payment.Intent
 	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
 var file_api_v1_merchant_payment_intent_proto_depIdxs = []int32{
-	0, // 0: cpay.api.v1.merchant.PaymentIntent.status:type_name -> cpay.api.v1.merchant.PaymentIntentStatus
-	2, // 1: cpay.api.v1.merchant.PaymentIntent.created_at:type_name -> google.protobuf.Timestamp
-	2, // 2: cpay.api.v1.merchant.PaymentIntent.updated_at:type_name -> google.protobuf.Timestamp
+	0, // 0: cpay.api.v1.merchant.payment.Intent.status:type_name -> cpay.api.v1.merchant.payment.IntentStatus
+	2, // 1: cpay.api.v1.merchant.payment.Intent.created_at:type_name -> google.protobuf.Timestamp
+	2, // 2: cpay.api.v1.merchant.payment.Intent.updated_at:type_name -> google.protobuf.Timestamp
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

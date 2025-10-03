@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.8
 // 	protoc        v6.32.0
-// source: api/v1/merchant/asset.proto
+// source: api/v1/merchant/asset/asset.proto
 
-package merchant
+package asset
 
 import (
 	v1 "github.com/cpay-dev/proto-go/blockchain/v1"
@@ -35,7 +35,7 @@ type Asset struct {
 
 func (x *Asset) Reset() {
 	*x = Asset{}
-	mi := &file_api_v1_merchant_asset_proto_msgTypes[0]
+	mi := &file_api_v1_merchant_asset_asset_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +47,7 @@ func (x *Asset) String() string {
 func (*Asset) ProtoMessage() {}
 
 func (x *Asset) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_merchant_asset_proto_msgTypes[0]
+	mi := &file_api_v1_merchant_asset_asset_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +60,7 @@ func (x *Asset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Asset.ProtoReflect.Descriptor instead.
 func (*Asset) Descriptor() ([]byte, []int) {
-	return file_api_v1_merchant_asset_proto_rawDescGZIP(), []int{0}
+	return file_api_v1_merchant_asset_asset_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Asset) GetId() string {
@@ -109,7 +109,7 @@ type AssetMetadata struct {
 
 func (x *AssetMetadata) Reset() {
 	*x = AssetMetadata{}
-	mi := &file_api_v1_merchant_asset_proto_msgTypes[1]
+	mi := &file_api_v1_merchant_asset_asset_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121,7 +121,7 @@ func (x *AssetMetadata) String() string {
 func (*AssetMetadata) ProtoMessage() {}
 
 func (x *AssetMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_api_v1_merchant_asset_proto_msgTypes[1]
+	mi := &file_api_v1_merchant_asset_asset_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -134,7 +134,7 @@ func (x *AssetMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetMetadata.ProtoReflect.Descriptor instead.
 func (*AssetMetadata) Descriptor() ([]byte, []int) {
-	return file_api_v1_merchant_asset_proto_rawDescGZIP(), []int{1}
+	return file_api_v1_merchant_asset_asset_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AssetMetadata) GetAddress() string {
@@ -158,43 +158,43 @@ func (x *AssetMetadata) GetIsStable() bool {
 	return false
 }
 
-var File_api_v1_merchant_asset_proto protoreflect.FileDescriptor
+var File_api_v1_merchant_asset_asset_proto protoreflect.FileDescriptor
 
-const file_api_v1_merchant_asset_proto_rawDesc = "" +
+const file_api_v1_merchant_asset_asset_proto_rawDesc = "" +
 	"\n" +
-	"\x1bapi/v1/merchant/asset.proto\x12\x14cpay.api.v1.merchant\x1a\x19blockchain/v1/chain.proto\"\xb5\x01\n" +
+	"!api/v1/merchant/asset/asset.proto\x12\x1acpay.api.v1.merchant.asset\x1a\x19blockchain/v1/chain.proto\"\xbb\x01\n" +
 	"\x05Asset\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12/\n" +
 	"\x05chain\x18\x02 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\x05chain\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x16\n" +
-	"\x06symbol\x18\x04 \x01(\tR\x06symbol\x12?\n" +
-	"\bmetadata\x18\x05 \x01(\v2#.cpay.api.v1.merchant.AssetMetadataR\bmetadata\"b\n" +
+	"\x06symbol\x18\x04 \x01(\tR\x06symbol\x12E\n" +
+	"\bmetadata\x18\x05 \x01(\v2).cpay.api.v1.merchant.asset.AssetMetadataR\bmetadata\"b\n" +
 	"\rAssetMetadata\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x1a\n" +
 	"\bdecimals\x18\x02 \x01(\rR\bdecimals\x12\x1b\n" +
-	"\tis_stable\x18\x03 \x01(\bR\bisStableB.Z,github.com/cpay-dev/proto-go/api/v1/merchantb\x06proto3"
+	"\tis_stable\x18\x03 \x01(\bR\bisStableB4Z2github.com/cpay-dev/proto-go/api/v1/merchant/assetb\x06proto3"
 
 var (
-	file_api_v1_merchant_asset_proto_rawDescOnce sync.Once
-	file_api_v1_merchant_asset_proto_rawDescData []byte
+	file_api_v1_merchant_asset_asset_proto_rawDescOnce sync.Once
+	file_api_v1_merchant_asset_asset_proto_rawDescData []byte
 )
 
-func file_api_v1_merchant_asset_proto_rawDescGZIP() []byte {
-	file_api_v1_merchant_asset_proto_rawDescOnce.Do(func() {
-		file_api_v1_merchant_asset_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_v1_merchant_asset_proto_rawDesc), len(file_api_v1_merchant_asset_proto_rawDesc)))
+func file_api_v1_merchant_asset_asset_proto_rawDescGZIP() []byte {
+	file_api_v1_merchant_asset_asset_proto_rawDescOnce.Do(func() {
+		file_api_v1_merchant_asset_asset_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_v1_merchant_asset_asset_proto_rawDesc), len(file_api_v1_merchant_asset_asset_proto_rawDesc)))
 	})
-	return file_api_v1_merchant_asset_proto_rawDescData
+	return file_api_v1_merchant_asset_asset_proto_rawDescData
 }
 
-var file_api_v1_merchant_asset_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_api_v1_merchant_asset_proto_goTypes = []any{
-	(*Asset)(nil),         // 0: cpay.api.v1.merchant.Asset
-	(*AssetMetadata)(nil), // 1: cpay.api.v1.merchant.AssetMetadata
+var file_api_v1_merchant_asset_asset_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_api_v1_merchant_asset_asset_proto_goTypes = []any{
+	(*Asset)(nil),         // 0: cpay.api.v1.merchant.asset.Asset
+	(*AssetMetadata)(nil), // 1: cpay.api.v1.merchant.asset.AssetMetadata
 	(v1.Chain)(0),         // 2: cpay.blockchain.v1.Chain
 }
-var file_api_v1_merchant_asset_proto_depIdxs = []int32{
-	2, // 0: cpay.api.v1.merchant.Asset.chain:type_name -> cpay.blockchain.v1.Chain
-	1, // 1: cpay.api.v1.merchant.Asset.metadata:type_name -> cpay.api.v1.merchant.AssetMetadata
+var file_api_v1_merchant_asset_asset_proto_depIdxs = []int32{
+	2, // 0: cpay.api.v1.merchant.asset.Asset.chain:type_name -> cpay.blockchain.v1.Chain
+	1, // 1: cpay.api.v1.merchant.asset.Asset.metadata:type_name -> cpay.api.v1.merchant.asset.AssetMetadata
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -202,26 +202,26 @@ var file_api_v1_merchant_asset_proto_depIdxs = []int32{
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_api_v1_merchant_asset_proto_init() }
-func file_api_v1_merchant_asset_proto_init() {
-	if File_api_v1_merchant_asset_proto != nil {
+func init() { file_api_v1_merchant_asset_asset_proto_init() }
+func file_api_v1_merchant_asset_asset_proto_init() {
+	if File_api_v1_merchant_asset_asset_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_v1_merchant_asset_proto_rawDesc), len(file_api_v1_merchant_asset_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_v1_merchant_asset_asset_proto_rawDesc), len(file_api_v1_merchant_asset_asset_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_api_v1_merchant_asset_proto_goTypes,
-		DependencyIndexes: file_api_v1_merchant_asset_proto_depIdxs,
-		MessageInfos:      file_api_v1_merchant_asset_proto_msgTypes,
+		GoTypes:           file_api_v1_merchant_asset_asset_proto_goTypes,
+		DependencyIndexes: file_api_v1_merchant_asset_asset_proto_depIdxs,
+		MessageInfos:      file_api_v1_merchant_asset_asset_proto_msgTypes,
 	}.Build()
-	File_api_v1_merchant_asset_proto = out.File
-	file_api_v1_merchant_asset_proto_goTypes = nil
-	file_api_v1_merchant_asset_proto_depIdxs = nil
+	File_api_v1_merchant_asset_asset_proto = out.File
+	file_api_v1_merchant_asset_asset_proto_goTypes = nil
+	file_api_v1_merchant_asset_asset_proto_depIdxs = nil
 }

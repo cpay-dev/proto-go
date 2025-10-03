@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.8
 // 	protoc        v6.32.0
-// source: api/v1/merchant/chain-service.proto
+// source: api/v1/merchant/chain/service.proto
 
-package merchant
+package chain
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -105,13 +105,13 @@ var File_api_v1_merchant_chain_service_proto protoreflect.FileDescriptor
 
 const file_api_v1_merchant_chain_service_proto_rawDesc = "" +
 	"\n" +
-	"#api/v1/merchant/chain-service.proto\x12\x14cpay.api.v1.merchant\x1a\x1bapi/v1/merchant/chain.proto\"\x13\n" +
-	"\x11ListChainsRequest\"I\n" +
-	"\x12ListChainsResponse\x123\n" +
-	"\x06chains\x18\x01 \x03(\v2\x1b.cpay.api.v1.merchant.ChainR\x06chains2o\n" +
-	"\fChainService\x12_\n" +
+	"#api/v1/merchant/chain/service.proto\x12\x1acpay.api.v1.merchant.chain\x1a!api/v1/merchant/chain/chain.proto\"\x13\n" +
+	"\x11ListChainsRequest\"O\n" +
+	"\x12ListChainsResponse\x129\n" +
+	"\x06chains\x18\x01 \x03(\v2!.cpay.api.v1.merchant.chain.ChainR\x06chains2{\n" +
+	"\fChainService\x12k\n" +
 	"\n" +
-	"ListChains\x12'.cpay.api.v1.merchant.ListChainsRequest\x1a(.cpay.api.v1.merchant.ListChainsResponseB.Z,github.com/cpay-dev/proto-go/api/v1/merchantb\x06proto3"
+	"ListChains\x12-.cpay.api.v1.merchant.chain.ListChainsRequest\x1a..cpay.api.v1.merchant.chain.ListChainsResponseB4Z2github.com/cpay-dev/proto-go/api/v1/merchant/chainb\x06proto3"
 
 var (
 	file_api_v1_merchant_chain_service_proto_rawDescOnce sync.Once
@@ -127,14 +127,14 @@ func file_api_v1_merchant_chain_service_proto_rawDescGZIP() []byte {
 
 var file_api_v1_merchant_chain_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_api_v1_merchant_chain_service_proto_goTypes = []any{
-	(*ListChainsRequest)(nil),  // 0: cpay.api.v1.merchant.ListChainsRequest
-	(*ListChainsResponse)(nil), // 1: cpay.api.v1.merchant.ListChainsResponse
-	(*Chain)(nil),              // 2: cpay.api.v1.merchant.Chain
+	(*ListChainsRequest)(nil),  // 0: cpay.api.v1.merchant.chain.ListChainsRequest
+	(*ListChainsResponse)(nil), // 1: cpay.api.v1.merchant.chain.ListChainsResponse
+	(*Chain)(nil),              // 2: cpay.api.v1.merchant.chain.Chain
 }
 var file_api_v1_merchant_chain_service_proto_depIdxs = []int32{
-	2, // 0: cpay.api.v1.merchant.ListChainsResponse.chains:type_name -> cpay.api.v1.merchant.Chain
-	0, // 1: cpay.api.v1.merchant.ChainService.ListChains:input_type -> cpay.api.v1.merchant.ListChainsRequest
-	1, // 2: cpay.api.v1.merchant.ChainService.ListChains:output_type -> cpay.api.v1.merchant.ListChainsResponse
+	2, // 0: cpay.api.v1.merchant.chain.ListChainsResponse.chains:type_name -> cpay.api.v1.merchant.chain.Chain
+	0, // 1: cpay.api.v1.merchant.chain.ChainService.ListChains:input_type -> cpay.api.v1.merchant.chain.ListChainsRequest
+	1, // 2: cpay.api.v1.merchant.chain.ChainService.ListChains:output_type -> cpay.api.v1.merchant.chain.ListChainsResponse
 	2, // [2:3] is the sub-list for method output_type
 	1, // [1:2] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -147,7 +147,7 @@ func file_api_v1_merchant_chain_service_proto_init() {
 	if File_api_v1_merchant_chain_service_proto != nil {
 		return
 	}
-	file_api_v1_merchant_chain_proto_init()
+	file_api_v1_merchant_chain_chain_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.8
 // 	protoc        v6.32.0
-// source: api/v1/merchant/asset-service.proto
+// source: api/v1/merchant/asset/service.proto
 
-package merchant
+package asset
 
 import (
 	v1 "github.com/cpay-dev/proto-go/blockchain/v1"
@@ -202,19 +202,19 @@ var File_api_v1_merchant_asset_service_proto protoreflect.FileDescriptor
 
 const file_api_v1_merchant_asset_service_proto_rawDesc = "" +
 	"\n" +
-	"#api/v1/merchant/asset-service.proto\x12\x14cpay.api.v1.merchant\x1a\x1bapi/v1/merchant/asset.proto\x1a\x19blockchain/v1/chain.proto\"I\n" +
+	"#api/v1/merchant/asset/service.proto\x12\x1acpay.api.v1.merchant.asset\x1a!api/v1/merchant/asset/asset.proto\x1a\x19blockchain/v1/chain.proto\"I\n" +
 	"\x11ListAssetsRequest\x124\n" +
-	"\bchain_id\x18\x01 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\achainId\"I\n" +
-	"\x12ListAssetsResponse\x123\n" +
-	"\x06assets\x18\x01 \x03(\v2\x1b.cpay.api.v1.merchant.AssetR\x06assets\"1\n" +
+	"\bchain_id\x18\x01 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\achainId\"O\n" +
+	"\x12ListAssetsResponse\x129\n" +
+	"\x06assets\x18\x01 \x03(\v2!.cpay.api.v1.merchant.asset.AssetR\x06assets\"1\n" +
 	"\x14GetAssetPriceRequest\x12\x19\n" +
 	"\basset_id\x18\x01 \x01(\tR\aassetId\"-\n" +
 	"\x15GetAssetPriceResponse\x12\x14\n" +
-	"\x05price\x18\x01 \x01(\tR\x05price2\xd9\x01\n" +
-	"\fAssetService\x12_\n" +
+	"\x05price\x18\x01 \x01(\tR\x05price2\xf1\x01\n" +
+	"\fAssetService\x12k\n" +
 	"\n" +
-	"ListAssets\x12'.cpay.api.v1.merchant.ListAssetsRequest\x1a(.cpay.api.v1.merchant.ListAssetsResponse\x12h\n" +
-	"\rGetAssetPrice\x12*.cpay.api.v1.merchant.GetAssetPriceRequest\x1a+.cpay.api.v1.merchant.GetAssetPriceResponseB.Z,github.com/cpay-dev/proto-go/api/v1/merchantb\x06proto3"
+	"ListAssets\x12-.cpay.api.v1.merchant.asset.ListAssetsRequest\x1a..cpay.api.v1.merchant.asset.ListAssetsResponse\x12t\n" +
+	"\rGetAssetPrice\x120.cpay.api.v1.merchant.asset.GetAssetPriceRequest\x1a1.cpay.api.v1.merchant.asset.GetAssetPriceResponseB4Z2github.com/cpay-dev/proto-go/api/v1/merchant/assetb\x06proto3"
 
 var (
 	file_api_v1_merchant_asset_service_proto_rawDescOnce sync.Once
@@ -230,20 +230,20 @@ func file_api_v1_merchant_asset_service_proto_rawDescGZIP() []byte {
 
 var file_api_v1_merchant_asset_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_api_v1_merchant_asset_service_proto_goTypes = []any{
-	(*ListAssetsRequest)(nil),     // 0: cpay.api.v1.merchant.ListAssetsRequest
-	(*ListAssetsResponse)(nil),    // 1: cpay.api.v1.merchant.ListAssetsResponse
-	(*GetAssetPriceRequest)(nil),  // 2: cpay.api.v1.merchant.GetAssetPriceRequest
-	(*GetAssetPriceResponse)(nil), // 3: cpay.api.v1.merchant.GetAssetPriceResponse
+	(*ListAssetsRequest)(nil),     // 0: cpay.api.v1.merchant.asset.ListAssetsRequest
+	(*ListAssetsResponse)(nil),    // 1: cpay.api.v1.merchant.asset.ListAssetsResponse
+	(*GetAssetPriceRequest)(nil),  // 2: cpay.api.v1.merchant.asset.GetAssetPriceRequest
+	(*GetAssetPriceResponse)(nil), // 3: cpay.api.v1.merchant.asset.GetAssetPriceResponse
 	(v1.Chain)(0),                 // 4: cpay.blockchain.v1.Chain
-	(*Asset)(nil),                 // 5: cpay.api.v1.merchant.Asset
+	(*Asset)(nil),                 // 5: cpay.api.v1.merchant.asset.Asset
 }
 var file_api_v1_merchant_asset_service_proto_depIdxs = []int32{
-	4, // 0: cpay.api.v1.merchant.ListAssetsRequest.chain_id:type_name -> cpay.blockchain.v1.Chain
-	5, // 1: cpay.api.v1.merchant.ListAssetsResponse.assets:type_name -> cpay.api.v1.merchant.Asset
-	0, // 2: cpay.api.v1.merchant.AssetService.ListAssets:input_type -> cpay.api.v1.merchant.ListAssetsRequest
-	2, // 3: cpay.api.v1.merchant.AssetService.GetAssetPrice:input_type -> cpay.api.v1.merchant.GetAssetPriceRequest
-	1, // 4: cpay.api.v1.merchant.AssetService.ListAssets:output_type -> cpay.api.v1.merchant.ListAssetsResponse
-	3, // 5: cpay.api.v1.merchant.AssetService.GetAssetPrice:output_type -> cpay.api.v1.merchant.GetAssetPriceResponse
+	4, // 0: cpay.api.v1.merchant.asset.ListAssetsRequest.chain_id:type_name -> cpay.blockchain.v1.Chain
+	5, // 1: cpay.api.v1.merchant.asset.ListAssetsResponse.assets:type_name -> cpay.api.v1.merchant.asset.Asset
+	0, // 2: cpay.api.v1.merchant.asset.AssetService.ListAssets:input_type -> cpay.api.v1.merchant.asset.ListAssetsRequest
+	2, // 3: cpay.api.v1.merchant.asset.AssetService.GetAssetPrice:input_type -> cpay.api.v1.merchant.asset.GetAssetPriceRequest
+	1, // 4: cpay.api.v1.merchant.asset.AssetService.ListAssets:output_type -> cpay.api.v1.merchant.asset.ListAssetsResponse
+	3, // 5: cpay.api.v1.merchant.asset.AssetService.GetAssetPrice:output_type -> cpay.api.v1.merchant.asset.GetAssetPriceResponse
 	4, // [4:6] is the sub-list for method output_type
 	2, // [2:4] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -256,7 +256,7 @@ func file_api_v1_merchant_asset_service_proto_init() {
 	if File_api_v1_merchant_asset_service_proto != nil {
 		return
 	}
-	file_api_v1_merchant_asset_proto_init()
+	file_api_v1_merchant_asset_asset_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
