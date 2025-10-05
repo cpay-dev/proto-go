@@ -25,7 +25,6 @@ const (
 type CreateWalletRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Chain         v1.Chain               `protobuf:"varint,1,opt,name=chain,proto3,enum=cpay.blockchain.v1.Chain" json:"chain,omitempty"`
-	TransitKey    []byte                 `protobuf:"bytes,2,opt,name=transit_key,json=transitKey,proto3" json:"transit_key,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -65,13 +64,6 @@ func (x *CreateWalletRequest) GetChain() v1.Chain {
 		return x.Chain
 	}
 	return v1.Chain(0)
-}
-
-func (x *CreateWalletRequest) GetTransitKey() []byte {
-	if x != nil {
-		return x.TransitKey
-	}
-	return nil
 }
 
 type CreateWalletResponse struct {
@@ -138,11 +130,9 @@ var File_api_v1_wallet_service_proto protoreflect.FileDescriptor
 
 const file_api_v1_wallet_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1bapi/v1/wallet/service.proto\x12\x12cpay.api.v1.wallet\x1a\x19blockchain/v1/chain.proto\"g\n" +
+	"\x1bapi/v1/wallet/service.proto\x12\x12cpay.api.v1.wallet\x1a\x19blockchain/v1/chain.proto\"F\n" +
 	"\x13CreateWalletRequest\x12/\n" +
-	"\x05chain\x18\x01 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\x05chain\x12\x1f\n" +
-	"\vtransit_key\x18\x02 \x01(\fR\n" +
-	"transitKey\"\x8a\x01\n" +
+	"\x05chain\x18\x01 \x01(\x0e2\x19.cpay.blockchain.v1.ChainR\x05chain\"\x8a\x01\n" +
 	"\x14CreateWalletResponse\x12\x1f\n" +
 	"\vkek_version\x18\x01 \x01(\rR\n" +
 	"kekVersion\x122\n" +
