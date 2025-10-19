@@ -2,11 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.36.8
 // 	protoc        v6.32.0
-// source: blockchain/v1/indexer/parsed-block.proto
+// source: blockchain/v1/parser/parsed-block.proto
 
-package indexer
+package parser
 
 import (
+	v1 "github.com/cpay-dev/proto-go/blockchain/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -23,7 +24,7 @@ const (
 
 type ParsedBlock struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Block         *BlockBase             `protobuf:"bytes,1,opt,name=block,proto3" json:"block,omitempty"`
+	Info          *v1.Block              `protobuf:"bytes,1,opt,name=info,proto3" json:"info,omitempty"`
 	Transfers     []*ParsedTransfer      `protobuf:"bytes,2,rep,name=transfers,proto3" json:"transfers,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -31,7 +32,7 @@ type ParsedBlock struct {
 
 func (x *ParsedBlock) Reset() {
 	*x = ParsedBlock{}
-	mi := &file_blockchain_v1_indexer_parsed_block_proto_msgTypes[0]
+	mi := &file_blockchain_v1_parser_parsed_block_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +44,7 @@ func (x *ParsedBlock) String() string {
 func (*ParsedBlock) ProtoMessage() {}
 
 func (x *ParsedBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_blockchain_v1_indexer_parsed_block_proto_msgTypes[0]
+	mi := &file_blockchain_v1_parser_parsed_block_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,12 +57,12 @@ func (x *ParsedBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParsedBlock.ProtoReflect.Descriptor instead.
 func (*ParsedBlock) Descriptor() ([]byte, []int) {
-	return file_blockchain_v1_indexer_parsed_block_proto_rawDescGZIP(), []int{0}
+	return file_blockchain_v1_parser_parsed_block_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ParsedBlock) GetBlock() *BlockBase {
+func (x *ParsedBlock) GetInfo() *v1.Block {
 	if x != nil {
-		return x.Block
+		return x.Info
 	}
 	return nil
 }
@@ -91,7 +92,7 @@ type ParsedTransfer struct {
 
 func (x *ParsedTransfer) Reset() {
 	*x = ParsedTransfer{}
-	mi := &file_blockchain_v1_indexer_parsed_block_proto_msgTypes[1]
+	mi := &file_blockchain_v1_parser_parsed_block_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -103,7 +104,7 @@ func (x *ParsedTransfer) String() string {
 func (*ParsedTransfer) ProtoMessage() {}
 
 func (x *ParsedTransfer) ProtoReflect() protoreflect.Message {
-	mi := &file_blockchain_v1_indexer_parsed_block_proto_msgTypes[1]
+	mi := &file_blockchain_v1_parser_parsed_block_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116,7 +117,7 @@ func (x *ParsedTransfer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParsedTransfer.ProtoReflect.Descriptor instead.
 func (*ParsedTransfer) Descriptor() ([]byte, []int) {
-	return file_blockchain_v1_indexer_parsed_block_proto_rawDescGZIP(), []int{1}
+	return file_blockchain_v1_parser_parsed_block_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ParsedTransfer) GetTxHash() string {
@@ -195,14 +196,14 @@ func (*ParsedTransfer_Native) isParsedTransfer_Kind() {}
 
 func (*ParsedTransfer_Contract) isParsedTransfer_Kind() {}
 
-var File_blockchain_v1_indexer_parsed_block_proto protoreflect.FileDescriptor
+var File_blockchain_v1_parser_parsed_block_proto protoreflect.FileDescriptor
 
-const file_blockchain_v1_indexer_parsed_block_proto_rawDesc = "" +
+const file_blockchain_v1_parser_parsed_block_proto_rawDesc = "" +
 	"\n" +
-	"(blockchain/v1/indexer/parsed-block.proto\x12\x1acpay.blockchain.v1.indexer\x1a!blockchain/v1/indexer/block.proto\"\x94\x01\n" +
-	"\vParsedBlock\x12;\n" +
-	"\x05block\x18\x01 \x01(\v2%.cpay.blockchain.v1.indexer.BlockBaseR\x05block\x12H\n" +
-	"\ttransfers\x18\x02 \x03(\v2*.cpay.blockchain.v1.indexer.ParsedTransferR\ttransfers\"\xbb\x01\n" +
+	"'blockchain/v1/parser/parsed-block.proto\x12\x19cpay.blockchain.v1.parser\x1a\x19blockchain/v1/block.proto\"\x85\x01\n" +
+	"\vParsedBlock\x12-\n" +
+	"\x04info\x18\x01 \x01(\v2\x19.cpay.blockchain.v1.BlockR\x04info\x12G\n" +
+	"\ttransfers\x18\x02 \x03(\v2).cpay.blockchain.v1.parser.ParsedTransferR\ttransfers\"\xbb\x01\n" +
 	"\x0eParsedTransfer\x12\x17\n" +
 	"\atx_hash\x18\x01 \x01(\tR\x06txHash\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\tR\x06amount\x12\x12\n" +
@@ -211,29 +212,29 @@ const file_blockchain_v1_indexer_parsed_block_proto_rawDesc = "" +
 	"\x05index\x18\x05 \x01(\x04R\x05index\x12\x18\n" +
 	"\x06native\x18\x06 \x01(\bH\x00R\x06native\x12\x1c\n" +
 	"\bcontract\x18\a \x01(\tH\x00R\bcontractB\x06\n" +
-	"\x04kindB4Z2github.com/cpay-dev/proto-go/blockchain/v1/indexerb\x06proto3"
+	"\x04kindB3Z1github.com/cpay-dev/proto-go/blockchain/v1/parserb\x06proto3"
 
 var (
-	file_blockchain_v1_indexer_parsed_block_proto_rawDescOnce sync.Once
-	file_blockchain_v1_indexer_parsed_block_proto_rawDescData []byte
+	file_blockchain_v1_parser_parsed_block_proto_rawDescOnce sync.Once
+	file_blockchain_v1_parser_parsed_block_proto_rawDescData []byte
 )
 
-func file_blockchain_v1_indexer_parsed_block_proto_rawDescGZIP() []byte {
-	file_blockchain_v1_indexer_parsed_block_proto_rawDescOnce.Do(func() {
-		file_blockchain_v1_indexer_parsed_block_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_blockchain_v1_indexer_parsed_block_proto_rawDesc), len(file_blockchain_v1_indexer_parsed_block_proto_rawDesc)))
+func file_blockchain_v1_parser_parsed_block_proto_rawDescGZIP() []byte {
+	file_blockchain_v1_parser_parsed_block_proto_rawDescOnce.Do(func() {
+		file_blockchain_v1_parser_parsed_block_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_blockchain_v1_parser_parsed_block_proto_rawDesc), len(file_blockchain_v1_parser_parsed_block_proto_rawDesc)))
 	})
-	return file_blockchain_v1_indexer_parsed_block_proto_rawDescData
+	return file_blockchain_v1_parser_parsed_block_proto_rawDescData
 }
 
-var file_blockchain_v1_indexer_parsed_block_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_blockchain_v1_indexer_parsed_block_proto_goTypes = []any{
-	(*ParsedBlock)(nil),    // 0: cpay.blockchain.v1.indexer.ParsedBlock
-	(*ParsedTransfer)(nil), // 1: cpay.blockchain.v1.indexer.ParsedTransfer
-	(*BlockBase)(nil),      // 2: cpay.blockchain.v1.indexer.BlockBase
+var file_blockchain_v1_parser_parsed_block_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_blockchain_v1_parser_parsed_block_proto_goTypes = []any{
+	(*ParsedBlock)(nil),    // 0: cpay.blockchain.v1.parser.ParsedBlock
+	(*ParsedTransfer)(nil), // 1: cpay.blockchain.v1.parser.ParsedTransfer
+	(*v1.Block)(nil),       // 2: cpay.blockchain.v1.Block
 }
-var file_blockchain_v1_indexer_parsed_block_proto_depIdxs = []int32{
-	2, // 0: cpay.blockchain.v1.indexer.ParsedBlock.block:type_name -> cpay.blockchain.v1.indexer.BlockBase
-	1, // 1: cpay.blockchain.v1.indexer.ParsedBlock.transfers:type_name -> cpay.blockchain.v1.indexer.ParsedTransfer
+var file_blockchain_v1_parser_parsed_block_proto_depIdxs = []int32{
+	2, // 0: cpay.blockchain.v1.parser.ParsedBlock.info:type_name -> cpay.blockchain.v1.Block
+	1, // 1: cpay.blockchain.v1.parser.ParsedBlock.transfers:type_name -> cpay.blockchain.v1.parser.ParsedTransfer
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -241,13 +242,12 @@ var file_blockchain_v1_indexer_parsed_block_proto_depIdxs = []int32{
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_blockchain_v1_indexer_parsed_block_proto_init() }
-func file_blockchain_v1_indexer_parsed_block_proto_init() {
-	if File_blockchain_v1_indexer_parsed_block_proto != nil {
+func init() { file_blockchain_v1_parser_parsed_block_proto_init() }
+func file_blockchain_v1_parser_parsed_block_proto_init() {
+	if File_blockchain_v1_parser_parsed_block_proto != nil {
 		return
 	}
-	file_blockchain_v1_indexer_block_proto_init()
-	file_blockchain_v1_indexer_parsed_block_proto_msgTypes[1].OneofWrappers = []any{
+	file_blockchain_v1_parser_parsed_block_proto_msgTypes[1].OneofWrappers = []any{
 		(*ParsedTransfer_Native)(nil),
 		(*ParsedTransfer_Contract)(nil),
 	}
@@ -255,17 +255,17 @@ func file_blockchain_v1_indexer_parsed_block_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_blockchain_v1_indexer_parsed_block_proto_rawDesc), len(file_blockchain_v1_indexer_parsed_block_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_blockchain_v1_parser_parsed_block_proto_rawDesc), len(file_blockchain_v1_parser_parsed_block_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_blockchain_v1_indexer_parsed_block_proto_goTypes,
-		DependencyIndexes: file_blockchain_v1_indexer_parsed_block_proto_depIdxs,
-		MessageInfos:      file_blockchain_v1_indexer_parsed_block_proto_msgTypes,
+		GoTypes:           file_blockchain_v1_parser_parsed_block_proto_goTypes,
+		DependencyIndexes: file_blockchain_v1_parser_parsed_block_proto_depIdxs,
+		MessageInfos:      file_blockchain_v1_parser_parsed_block_proto_msgTypes,
 	}.Build()
-	File_blockchain_v1_indexer_parsed_block_proto = out.File
-	file_blockchain_v1_indexer_parsed_block_proto_goTypes = nil
-	file_blockchain_v1_indexer_parsed_block_proto_depIdxs = nil
+	File_blockchain_v1_parser_parsed_block_proto = out.File
+	file_blockchain_v1_parser_parsed_block_proto_goTypes = nil
+	file_blockchain_v1_parser_parsed_block_proto_depIdxs = nil
 }
