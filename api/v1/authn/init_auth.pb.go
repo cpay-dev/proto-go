@@ -106,6 +106,8 @@ func (*InitAuthRequest_Email) isInitAuthRequest_Method() {}
 type ProviderMethod struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Provider      AuthProvider           `protobuf:"varint,1,opt,name=provider,proto3,enum=cpay.api.v1.authn.AuthProvider" json:"provider,omitempty"`
+	Nonce         string                 `protobuf:"bytes,2,opt,name=nonce,proto3" json:"nonce,omitempty"`
+	RedirectPath  string                 `protobuf:"bytes,3,opt,name=redirect_path,json=redirectPath,proto3" json:"redirect_path,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -145,6 +147,20 @@ func (x *ProviderMethod) GetProvider() AuthProvider {
 		return x.Provider
 	}
 	return AuthProvider_AUTH_PROVIDER_UNSPECIFIED
+}
+
+func (x *ProviderMethod) GetNonce() string {
+	if x != nil {
+		return x.Nonce
+	}
+	return ""
+}
+
+func (x *ProviderMethod) GetRedirectPath() string {
+	if x != nil {
+		return x.RedirectPath
+	}
+	return ""
 }
 
 type EmailMethod struct {
@@ -265,9 +281,11 @@ const file_api_v1_authn_init_auth_proto_rawDesc = "" +
 	"\x0fInitAuthRequest\x12?\n" +
 	"\bprovider\x18\x01 \x01(\v2!.cpay.api.v1.authn.ProviderMethodH\x00R\bprovider\x126\n" +
 	"\x05email\x18\x02 \x01(\v2\x1e.cpay.api.v1.authn.EmailMethodH\x00R\x05emailB\b\n" +
-	"\x06method\"M\n" +
+	"\x06method\"\x88\x01\n" +
 	"\x0eProviderMethod\x12;\n" +
-	"\bprovider\x18\x01 \x01(\x0e2\x1f.cpay.api.v1.authn.AuthProviderR\bprovider\"#\n" +
+	"\bprovider\x18\x01 \x01(\x0e2\x1f.cpay.api.v1.authn.AuthProviderR\bprovider\x12\x14\n" +
+	"\x05nonce\x18\x02 \x01(\tR\x05nonce\x12#\n" +
+	"\rredirect_path\x18\x03 \x01(\tR\fredirectPath\"#\n" +
 	"\vEmailMethod\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\"?\n" +
 	"\x10InitAuthResponse\x12\x1b\n" +
