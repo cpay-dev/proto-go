@@ -195,7 +195,7 @@ type InitAuthResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Types that are valid to be assigned to Continuation:
 	//
-	//	*InitAuthResponse_AuthUrl
+	//	*InitAuthResponse_Provider
 	Continuation  isInitAuthResponse_Continuation `protobuf_oneof:"continuation"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -238,24 +238,76 @@ func (x *InitAuthResponse) GetContinuation() isInitAuthResponse_Continuation {
 	return nil
 }
 
-func (x *InitAuthResponse) GetAuthUrl() string {
+func (x *InitAuthResponse) GetProvider() *ProviderContinuation {
 	if x != nil {
-		if x, ok := x.Continuation.(*InitAuthResponse_AuthUrl); ok {
-			return x.AuthUrl
+		if x, ok := x.Continuation.(*InitAuthResponse_Provider); ok {
+			return x.Provider
 		}
 	}
-	return ""
+	return nil
 }
 
 type isInitAuthResponse_Continuation interface {
 	isInitAuthResponse_Continuation()
 }
 
-type InitAuthResponse_AuthUrl struct {
-	AuthUrl string `protobuf:"bytes,1,opt,name=auth_url,json=authUrl,proto3,oneof"`
+type InitAuthResponse_Provider struct {
+	Provider *ProviderContinuation `protobuf:"bytes,1,opt,name=provider,proto3,oneof"`
 }
 
-func (*InitAuthResponse_AuthUrl) isInitAuthResponse_Continuation() {}
+func (*InitAuthResponse_Provider) isInitAuthResponse_Continuation() {}
+
+type ProviderContinuation struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	State         string                 `protobuf:"bytes,1,opt,name=state,proto3" json:"state,omitempty"`
+	RedirectUrl   string                 `protobuf:"bytes,2,opt,name=redirect_url,json=redirectUrl,proto3" json:"redirect_url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProviderContinuation) Reset() {
+	*x = ProviderContinuation{}
+	mi := &file_api_v1_authn_init_auth_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProviderContinuation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProviderContinuation) ProtoMessage() {}
+
+func (x *ProviderContinuation) ProtoReflect() protoreflect.Message {
+	mi := &file_api_v1_authn_init_auth_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProviderContinuation.ProtoReflect.Descriptor instead.
+func (*ProviderContinuation) Descriptor() ([]byte, []int) {
+	return file_api_v1_authn_init_auth_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ProviderContinuation) GetState() string {
+	if x != nil {
+		return x.State
+	}
+	return ""
+}
+
+func (x *ProviderContinuation) GetRedirectUrl() string {
+	if x != nil {
+		return x.RedirectUrl
+	}
+	return ""
+}
 
 var File_api_v1_authn_init_auth_proto protoreflect.FileDescriptor
 
@@ -269,10 +321,13 @@ const file_api_v1_authn_init_auth_proto_rawDesc = "" +
 	"\x0eProviderMethod\x12;\n" +
 	"\bprovider\x18\x01 \x01(\x0e2\x1f.cpay.api.v1.authn.AuthProviderR\bprovider\"#\n" +
 	"\vEmailMethod\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\"?\n" +
-	"\x10InitAuthResponse\x12\x1b\n" +
-	"\bauth_url\x18\x01 \x01(\tH\x00R\aauthUrlB\x0e\n" +
-	"\fcontinuationB+Z)github.com/cpay-dev/proto-go/api/v1/authnb\x06proto3"
+	"\x05email\x18\x01 \x01(\tR\x05email\"i\n" +
+	"\x10InitAuthResponse\x12E\n" +
+	"\bprovider\x18\x01 \x01(\v2'.cpay.api.v1.authn.ProviderContinuationH\x00R\bproviderB\x0e\n" +
+	"\fcontinuation\"O\n" +
+	"\x14ProviderContinuation\x12\x14\n" +
+	"\x05state\x18\x01 \x01(\tR\x05state\x12!\n" +
+	"\fredirect_url\x18\x02 \x01(\tR\vredirectUrlB+Z)github.com/cpay-dev/proto-go/api/v1/authnb\x06proto3"
 
 var (
 	file_api_v1_authn_init_auth_proto_rawDescOnce sync.Once
@@ -286,23 +341,25 @@ func file_api_v1_authn_init_auth_proto_rawDescGZIP() []byte {
 	return file_api_v1_authn_init_auth_proto_rawDescData
 }
 
-var file_api_v1_authn_init_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_api_v1_authn_init_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_api_v1_authn_init_auth_proto_goTypes = []any{
-	(*InitAuthRequest)(nil),  // 0: cpay.api.v1.authn.InitAuthRequest
-	(*ProviderMethod)(nil),   // 1: cpay.api.v1.authn.ProviderMethod
-	(*EmailMethod)(nil),      // 2: cpay.api.v1.authn.EmailMethod
-	(*InitAuthResponse)(nil), // 3: cpay.api.v1.authn.InitAuthResponse
-	(AuthProvider)(0),        // 4: cpay.api.v1.authn.AuthProvider
+	(*InitAuthRequest)(nil),      // 0: cpay.api.v1.authn.InitAuthRequest
+	(*ProviderMethod)(nil),       // 1: cpay.api.v1.authn.ProviderMethod
+	(*EmailMethod)(nil),          // 2: cpay.api.v1.authn.EmailMethod
+	(*InitAuthResponse)(nil),     // 3: cpay.api.v1.authn.InitAuthResponse
+	(*ProviderContinuation)(nil), // 4: cpay.api.v1.authn.ProviderContinuation
+	(AuthProvider)(0),            // 5: cpay.api.v1.authn.AuthProvider
 }
 var file_api_v1_authn_init_auth_proto_depIdxs = []int32{
 	1, // 0: cpay.api.v1.authn.InitAuthRequest.provider:type_name -> cpay.api.v1.authn.ProviderMethod
 	2, // 1: cpay.api.v1.authn.InitAuthRequest.email:type_name -> cpay.api.v1.authn.EmailMethod
-	4, // 2: cpay.api.v1.authn.ProviderMethod.provider:type_name -> cpay.api.v1.authn.AuthProvider
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	5, // 2: cpay.api.v1.authn.ProviderMethod.provider:type_name -> cpay.api.v1.authn.AuthProvider
+	4, // 3: cpay.api.v1.authn.InitAuthResponse.provider:type_name -> cpay.api.v1.authn.ProviderContinuation
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_api_v1_authn_init_auth_proto_init() }
@@ -316,7 +373,7 @@ func file_api_v1_authn_init_auth_proto_init() {
 		(*InitAuthRequest_Email)(nil),
 	}
 	file_api_v1_authn_init_auth_proto_msgTypes[3].OneofWrappers = []any{
-		(*InitAuthResponse_AuthUrl)(nil),
+		(*InitAuthResponse_Provider)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -324,7 +381,7 @@ func file_api_v1_authn_init_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_v1_authn_init_auth_proto_rawDesc), len(file_api_v1_authn_init_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
