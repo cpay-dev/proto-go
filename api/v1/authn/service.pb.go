@@ -24,19 +24,24 @@ var File_api_v1_authn_service_proto protoreflect.FileDescriptor
 
 const file_api_v1_authn_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1aapi/v1/authn/service.proto\x12\x11cpay.api.v1.authn\x1a\x1capi/v1/authn/init_auth.proto2c\n" +
+	"\x1aapi/v1/authn/service.proto\x12\x11cpay.api.v1.authn\x1a\x1capi/v1/authn/init_auth.proto\x1a api/v1/authn/continue_auth.proto2\xc4\x01\n" +
 	"\fAuthnService\x12S\n" +
-	"\bInitAuth\x12\".cpay.api.v1.authn.InitAuthRequest\x1a#.cpay.api.v1.authn.InitAuthResponseB+Z)github.com/cpay-dev/proto-go/api/v1/authnb\x06proto3"
+	"\bInitAuth\x12\".cpay.api.v1.authn.InitAuthRequest\x1a#.cpay.api.v1.authn.InitAuthResponse\x12_\n" +
+	"\fContinueAuth\x12&.cpay.api.v1.authn.ContinueAuthRequest\x1a'.cpay.api.v1.authn.ContinueAuthResponseB+Z)github.com/cpay-dev/proto-go/api/v1/authnb\x06proto3"
 
 var file_api_v1_authn_service_proto_goTypes = []any{
-	(*InitAuthRequest)(nil),  // 0: cpay.api.v1.authn.InitAuthRequest
-	(*InitAuthResponse)(nil), // 1: cpay.api.v1.authn.InitAuthResponse
+	(*InitAuthRequest)(nil),      // 0: cpay.api.v1.authn.InitAuthRequest
+	(*ContinueAuthRequest)(nil),  // 1: cpay.api.v1.authn.ContinueAuthRequest
+	(*InitAuthResponse)(nil),     // 2: cpay.api.v1.authn.InitAuthResponse
+	(*ContinueAuthResponse)(nil), // 3: cpay.api.v1.authn.ContinueAuthResponse
 }
 var file_api_v1_authn_service_proto_depIdxs = []int32{
 	0, // 0: cpay.api.v1.authn.AuthnService.InitAuth:input_type -> cpay.api.v1.authn.InitAuthRequest
-	1, // 1: cpay.api.v1.authn.AuthnService.InitAuth:output_type -> cpay.api.v1.authn.InitAuthResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	1, // 1: cpay.api.v1.authn.AuthnService.ContinueAuth:input_type -> cpay.api.v1.authn.ContinueAuthRequest
+	2, // 2: cpay.api.v1.authn.AuthnService.InitAuth:output_type -> cpay.api.v1.authn.InitAuthResponse
+	3, // 3: cpay.api.v1.authn.AuthnService.ContinueAuth:output_type -> cpay.api.v1.authn.ContinueAuthResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -48,6 +53,7 @@ func file_api_v1_authn_service_proto_init() {
 		return
 	}
 	file_api_v1_authn_init_auth_proto_init()
+	file_api_v1_authn_continue_auth_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

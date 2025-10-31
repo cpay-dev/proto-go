@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthnService_InitAuth_FullMethodName = "/cpay.api.v1.authn.AuthnService/InitAuth"
+	AuthnService_InitAuth_FullMethodName     = "/cpay.api.v1.authn.AuthnService/InitAuth"
+	AuthnService_ContinueAuth_FullMethodName = "/cpay.api.v1.authn.AuthnService/ContinueAuth"
 )
 
 // AuthnServiceClient is the client API for AuthnService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthnServiceClient interface {
 	InitAuth(ctx context.Context, in *InitAuthRequest, opts ...grpc.CallOption) (*InitAuthResponse, error)
+	ContinueAuth(ctx context.Context, in *ContinueAuthRequest, opts ...grpc.CallOption) (*ContinueAuthResponse, error)
 }
 
 type authnServiceClient struct {
@@ -47,11 +49,22 @@ func (c *authnServiceClient) InitAuth(ctx context.Context, in *InitAuthRequest, 
 	return out, nil
 }
 
+func (c *authnServiceClient) ContinueAuth(ctx context.Context, in *ContinueAuthRequest, opts ...grpc.CallOption) (*ContinueAuthResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ContinueAuthResponse)
+	err := c.cc.Invoke(ctx, AuthnService_ContinueAuth_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthnServiceServer is the server API for AuthnService service.
 // All implementations must embed UnimplementedAuthnServiceServer
 // for forward compatibility.
 type AuthnServiceServer interface {
 	InitAuth(context.Context, *InitAuthRequest) (*InitAuthResponse, error)
+	ContinueAuth(context.Context, *ContinueAuthRequest) (*ContinueAuthResponse, error)
 	mustEmbedUnimplementedAuthnServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedAuthnServiceServer struct{}
 
 func (UnimplementedAuthnServiceServer) InitAuth(context.Context, *InitAuthRequest) (*InitAuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitAuth not implemented")
+}
+func (UnimplementedAuthnServiceServer) ContinueAuth(context.Context, *ContinueAuthRequest) (*ContinueAuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ContinueAuth not implemented")
 }
 func (UnimplementedAuthnServiceServer) mustEmbedUnimplementedAuthnServiceServer() {}
 func (UnimplementedAuthnServiceServer) testEmbeddedByValue()                      {}
@@ -104,6 +120,24 @@ func _AuthnService_InitAuth_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthnService_ContinueAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ContinueAuthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthnServiceServer).ContinueAuth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthnService_ContinueAuth_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthnServiceServer).ContinueAuth(ctx, req.(*ContinueAuthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuthnService_ServiceDesc is the grpc.ServiceDesc for AuthnService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var AuthnService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "InitAuth",
 			Handler:    _AuthnService_InitAuth_Handler,
+		},
+		{
+			MethodName: "ContinueAuth",
+			Handler:    _AuthnService_ContinueAuth_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
